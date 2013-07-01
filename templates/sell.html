@@ -1,0 +1,43 @@
+ <!DOCTYPE HTML>
+ <html>
+ <head>
+ 	<title> Giftbook</title>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+ 	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+ 	<link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
+ </head>
+
+ <body>
+ 	<h4>Sign up!</h4>
+
+ 	<form  action="/create" method="post">  
+ 		<fieldset>
+ 			Item Name: <input class = "input-xlarge" type="text" name="item_name" > 
+
+ 			Item condition: <input class = "input-xlarge" type="text" name="item_condition" > 
+
+ 			Item Picture (use img link temporarily): <input class = "input-xlarge" type="text" name="image_link" >
+
+ 			Item location : <select id="location" name="item_location">
+	 			 <option value="1">South</option>
+	 			 <option value="2">East</option>
+
+ 			<p> Item description: <br>
+ 				<textarea class="input-block-level" name="desc" rows="3" > </textarea>
+ 			</p>
+
+
+ 			Category: <select id="category" name="item_category"> 
+	 			 <option value="clothes">clothes</option>
+	 			 <option value="electronics">electronics</option>	   
+	 			 <option value="bag">bags</option>	   
+	 			 <option value="4">Choice 4</option>	   
+	 			 <option value="5">Choice 5</option>	   
+
+ 			</select>
+ 		</fieldset>
+ 		<input type="submit" value="Submit">
+ 	</form>	
+ </body>
+ </html>
