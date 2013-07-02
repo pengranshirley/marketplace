@@ -34,7 +34,6 @@
       </div>
 
       <h3> Current Product </h3>
-      <h4> By user {{ owner.username }} / {{ owner.email }} </h4>
       <table class="table table-bordered table-striped" >
         <thead>
           <th>Name</th>
@@ -42,6 +41,7 @@
           <th>Condition</th>
           <th>Location</th>
           <th>Description</th>
+          <th>Owner</th>
         </thead>
 
 
@@ -52,7 +52,7 @@
       <td>{{ item.condition }} </td>
       <td>{{ item.location }} </td>
       <td>{{ item.description }} </td>
-
+      <td>{{ item.parent().username }}</td>
 
 	  </tr>
 	</tbody>
