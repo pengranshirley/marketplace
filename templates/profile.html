@@ -1,0 +1,79 @@
+ <!DOCTYPE HTML>
+ <html>
+ <head>
+ 	<title> Giftbook</title>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+ 	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+ </head>
+
+ <body>
+ 	<h4>User Profile</h4>
+ 	<p> User info 
+ 		username: {{ user.username }} <br>
+ 		email: {{ user.email }} <br>
+ 		description: {{ user.description }} <br>
+ 	</p>
+ 	<div>
+ 		Items on sale
+
+ 		<table class="table table-bordered table-striped" >
+ 			<thead>
+ 				<th>Name</th>
+ 				<th>Category</th>
+ 				<th>Condition</th>
+ 				<th>Location</th>
+ 				<th>Description</th>
+ 				<th>View in detail</th>
+ 				<th>Sold??</th>
+ 			</thead>
+
+ 			<tbody>
+ 				{% for item in items_onsale %}
+ 				<tr>
+ 					<td>{{ item.name }} </td>
+ 					<td>{{ item.category }} </td>
+ 					<td>{{ item.condition }} </td>
+ 					<td>{{ item.location }} </td>
+ 					<td>{{ item.description }} </td>
+ 					<td><a href= "/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here</a></td>
+ 					<td><a href= "/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">I have sold it!</a></td>
+ 				</tr>
+ 				{% endfor %}
+ 			</tbody>
+ 		</table>
+
+ 	</div>
+ 	<div>
+ 		Items sold already
+
+ 		<table class="table table-bordered table-striped" >
+ 			<thead>
+ 				<th>Name</th>
+ 				<th>Category</th>
+ 				<th>Condition</th>
+ 				<th>Location</th>
+ 				<th>Description</th>
+ 				<th>View in detail</th>
+ 				<th>Sold??</th>
+ 			</thead>
+
+ 			<tbody>
+ 				{% for item in items_sold %}
+ 				<tr>
+ 					<td>{{ item.name }} </td>
+ 					<td>{{ item.category }} </td>
+ 					<td>{{ item.condition }} </td>
+ 					<td>{{ item.location }} </td>
+ 					<td>{{ item.description }} </td>
+ 					<td><a href= "/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here</a></td>
+ 					<td><a href= "/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click to resell!</a></td>
+
+ 				</tr>
+ 				{% endfor %}
+ 			</tbody>
+ 		</table>
+
+ 	</div>
+
+ </body>

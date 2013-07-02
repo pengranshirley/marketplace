@@ -99,6 +99,45 @@ class AddUser(webapp2.RequestHandler):
     else:
         self.redirect("/marketplace")
 
+class UserProfile(webapp2.RequestHandler):
+  def get(self):
+     user= users.get_current_user()
+     if user:
+        parent_key = db.Key.from_path('Persons', users.get_current_user().email())
+        person = db.get(parent_key)
+
+
+        items_onsale = db.GqlQuery("SELECT * "
+                                   "FROM Items "
+                                   "WHERE sold = False AND ANCESTOR IS :1 "
+                                   "ORDER BY date DESC",
+                                   parent_key)
+
+
+        items_sold =   db.GqlQuery("SELECT * "
+                                   "FROM Items "
+                                   "WHERE sold = True AND ANCESTOR IS :1 "
+                                   "ORDER BY date DESC",
+                                   parent_key)
+        
+        template_values = {
+            'user': person,
+            'logout': users.create_logout_url(self.request.host_url),
+            'items_onsale': items_onsale,
+            "items_sold": items_sold,
+            
+        } 
+        template = jinja_environment.get_template('profile.html')
+        self.response.out.write(template.render(template_values))
+
+     else:
+        self.redirect("/marketplace")
+
+
+
+
+
+
 
 class AddItem(webapp2.RequestHandler):
   def post(self):
@@ -126,7 +165,30 @@ class AddItem(webapp2.RequestHandler):
     else:
         self.redirect("/marketplace")
 
-  
+class SoldCondition(webapp2.RequestHandler):
+  def get(self, name):
+    user = users.get_current_user()
+    if user:
+      key = self.request.get("ID")  #id is each product's natural primary key
+      parent_email = self.request.get("user")
+      person = db.Key.from_path('Persons', parent_email)
+      item = Items.get_by_id(int(key), parent = person)
+      if item.sold == True:
+        item.sold = False
+        item.put()
+      else:
+        item.sold = True
+        item.put()
+
+      self.redirect("/profile")
+
+    else:
+      self.redirect("/marketplace")
+
+
+
+
+
 
 class DisplayByC(webapp2.RequestHandler):
   def get(self, name):
@@ -135,7 +197,7 @@ class DisplayByC(webapp2.RequestHandler):
         start_no = int((int(page)-1)*9)
         query = db.GqlQuery("SELECT * "
                             "FROM Items "
-                            "WHERE category = :1 "
+                            "WHERE sold = False AND category = :1 "
                             "ORDER BY date DESC",
                             category)
     
@@ -160,7 +222,6 @@ class DisplayProduct(webapp2.RequestHandler):
     key = self.request.get("ID")  #id is each product's natural primary key
     parent_email = self.request.get("user")
     person = db.Key.from_path('Persons', parent_email)
-
     item = Items.get_by_id(int(key), parent = person)
     template_values = {
       'user_mail': users.get_current_user().email(),
@@ -175,8 +236,10 @@ class DisplayProduct(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([('/marketplace', MainPage),
                                ('/signup',registration),
                                ('/register', AddUser),
-                               ('/sell', SellForm),
+                               ('/profile', UserProfile),
+                               ('/new', SellForm),
                                ('/create', AddItem),
                                (r'/viewCategory(.*)', DisplayByC),
+                               (r'/sellProduct(.*)', SoldCondition),
                                (r'/viewProduct(.*)', DisplayProduct)],
                               debug=True)
