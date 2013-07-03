@@ -10,7 +10,7 @@ handlers:
   static_dir: stylesheets
 
 - url: /images
-  static_dir: images
+  static_dir: Images
 
 - url: /scripts
   static_dir: scripts
