@@ -33,6 +33,12 @@ class Items(db.Model):
   sold = db.BooleanProperty(default=False)
   date = db.DateTimeProperty(auto_now_add=True)
 
+class Favorite(db.Model):
+  productID = db.StringProperty()
+  parentID = db.StringProperty()
+  userID = db.StringProperty()
+
+
 # This part for the front page
 # Process: User login --> First time user diverts to register pages
 #                     --> Non first time user diverts to "category.html"/ displayProductsByCategory
@@ -75,8 +81,6 @@ class SellForm(webapp2.RequestHandler):
         self.response.out.write(template.render())
       else:
         self.redirect("/marketplace")
-
-
 
 # Handle user registration, corresponds to "register"
 class AddUser(webapp2.RequestHandler):
@@ -152,11 +156,13 @@ class AddItem(webapp2.RequestHandler):
         picture = self.request.get('img')
         item.img = db.Blob(picture)
         item.put()
+        fav = 0
 
         template_values = {
               'user_mail': users.get_current_user().email(),
               'logout': users.create_logout_url(self.request.host_url),
               'item': item,
+              'fav': fav,
               'owner': person,
         } 
         template = jinja_environment.get_template('product.html')
@@ -183,6 +189,47 @@ class SoldCondition(webapp2.RequestHandler):
     else:
       self.redirect("/marketplace")
 
+class RemoveFavorite(webapp2.RequestHandler):
+  def get(self, name):
+    user = users.get_current_user()
+    if user:
+      key = self.request.get("ID")  
+      parent_email = self.request.get("user")
+      current_user = user.email()
+
+
+      query = db.GqlQuery("SELECT * "
+                          "FROM Favorite "
+                          "WHERE productID = :1 AND parentID = :2 AND userID = :3",
+                          key, parent_email, current_user)
+
+      for p in query:
+        p.delete()
+
+      self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
+
+    else:
+      self.redirect("/marketplace")
+
+
+class AddFavorite(webapp2.RequestHandler):
+  def get(self, name):
+    user = users.get_current_user()
+    if user:
+      key = self.request.get("ID")  #id is each product's natural primary key
+      parent_email = self.request.get("user")
+      current_user = user.email()
+      favorite = Favorite()
+      favorite.productID = key
+      favorite.parentID = parent_email
+      favorite.userID = current_user
+      favorite.put()
+      self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
+
+    else:
+      self.redirect("/marketplace")
+
+
 
 class ViewImage(webapp2.RequestHandler):
   def get(self, name):
@@ -196,10 +243,6 @@ class ViewImage(webapp2.RequestHandler):
         self.response.out.write(img)
       else:
         self.redirect('/images/gift.jpg')
-
-
-
-
 
 
 class DisplayByC(webapp2.RequestHandler):
@@ -231,19 +274,34 @@ class DisplayByC(webapp2.RequestHandler):
 
 class DisplayProduct(webapp2.RequestHandler):
   def get(self, name):
-    key = self.request.get("ID")  
-    parent_email = self.request.get("user")
-    person = db.Key.from_path('Persons', parent_email)
-    item = Items.get_by_id(int(key), parent = person)
-    template_values = {
-      'user_mail': users.get_current_user().email(),
-      'logout': users.create_logout_url(self.request.host_url),
-      'item': item,
-      'owner':person,
-    }
+    user = users.get_current_user()
+    if user:
+      key = self.request.get("ID")  
+      parent_email = self.request.get("user")
+      person = db.Key.from_path('Persons', parent_email)
+      current_user = user.email()
+      item = Items.get_by_id(int(key), parent = person)
 
-    template = jinja_environment.get_template('product.html')
-    self.response.out.write(template.render(template_values))
+      query = db.GqlQuery("SELECT * "
+                          "FROM Favorite "
+                          "WHERE productID = :1 AND parentID = :2 AND userID = :3",
+                          key, parent_email, current_user)
+      query_2 = query.fetch(1)
+
+      if query_2:
+        fav = 1
+      else:
+        fav = 0
+
+      template_values = {
+        'user_mail': users.get_current_user().email(),
+        'logout': users.create_logout_url(self.request.host_url),
+        'item': item,
+        'owner':person,
+        'fav_status': fav, # 1 stands for alrday favorite, 0 stands for not
+      }
+      template = jinja_environment.get_template('product.html')
+      self.response.out.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([('/marketplace', MainPage),
                                ('/signup',registration),
@@ -253,6 +311,8 @@ app = webapp2.WSGIApplication([('/marketplace', MainPage),
                                ('/create', AddItem),
                                (r'/viewCategory(.*)', DisplayByC),
                                (r'/img(.*)', ViewImage),
+                               (r'/addFavorite(.*)', AddFavorite),
+                               (r'/unfavorite(.*)', RemoveFavorite),
                                (r'/sellProduct(.*)', SoldCondition),
                                (r'/viewProduct(.*)', DisplayProduct)],
                               debug=True)
