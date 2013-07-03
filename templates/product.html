@@ -1,70 +1,132 @@
 <!-- Wish list -->
 <!DOCTYPE HTML>
 <html>
-<head>
-  <title> Giftbook</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-  <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
-</head>
-<body>
-  <div class="container-fluid"> 
+  <head>
+    <title>Marketplace - Item</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
+    <style type="text/css">
+    body{
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #FFFF99;
+    }
+    .marketplacebanner2 {
+      width: 345px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .item-description{
+      width: 370px;
+      margin: 0px auto;
+      background-color: #FFFFCC;
+      border: solid;
+      border-width: 0.5px;
+      border-color: #cccccc;
+    }
+    .clear{
+      clear: both;
+    }
+    p.item-description{
+      width: auto;
+      margin-left: 10px;
+      margin-right: 10px;
+      border: none;
+    }
+    #pictureframe{
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 370px;
+      background-color: #FFFFCC;
+      border: solid;
+      border-bottom: none;
+      border-width: 0.5px;
+      border-color: #cccccc;
+    }
+    #solopicture{
+      width: 360px;
+      padding: 10px;
+    }
+    #description-field{
+      width: 360px;
+      margin: 0px auto;
+      background-color: #FFFFCC;
+      padding: 5px;
+    }
+    #button-frame{
+      width: 370px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #FFFFCC;
+      border: solid;
+      border-bottom: none;
+      border-width: 0.5px;
+      border-color: #cccccc;
+      position: relative;
+    }
+    #home-made-button{
+      width: 20px;
+      height: 20px;
+      margin-left: 10px;
+      text-align: center;
+      float: left;
+    }
+    #item-name{
+      width: 320px;
+      height: 20px;
+      margin-right: 10px;
+      text-align: ;
+      float: right;
+    }    
+    </style>          
+  </head>
+  <body>
+    <div class="container">
+      <!--marketplace banner photo -->
+      <div class="marketplacebanner2">
+        <img src="../images/Marketplace%20smaller%20logo%20item.png"/>
+      </div>
 
-    <!-- Top bar --> 
-    <div class="row-fluid top-container">  
-     <div class="span5">
-       <img class="logo" src="../images/logo.png">
-     </div>
-     <div class="span4 offset8 signin-align">
-       <span> {{ user_mail }} <a href="{{ logout }}">logout</a></span>
-     </div>
-   </div>
-   <!-- End of top bar -->
+      <!--item photo-->
+      <div id="pictureframe">
+        <div id="solopicture">
+          <img src="../images/example1.jpg">
+        </div>
+      </div>
 
-   <!-- Main navigation -->
-   <div class = "navbar">
-     <div class = "navbar-inner">
-       <ul class = "nav">
-         <li> <a href="/marketplace">Home</a> </li>
+      <div id="button-frame">
 
-       </ul>
-     </div> 
-   </div>
+        <!--Home made like button-->
+        <div id="home-made-button">
+          <span><i class="icon-heart"></i></span> 
+          <!-- need to link this icon-heart to the favourite action and once favourite, need to add js when click change to icon-heart icon-white-->
+        </div>
 
-   <h3> Current Product </h3>
-   <table class="table table-bordered table-striped" >
-    <thead>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Favor condition</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th>Owner</th>
-      <th>picture</th>
-      <th>Favor it!</th>
-    </thead>
+        <!--item name-->
+        <div id="item-name">
+          <p>{item name}
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <!--Item description-->
+      <div class="item-description">
 
 
-    <tbody>
-     <tr>
-      <td>{{ item.name }} </td>
-      <td>{{ item.category }} </td>
-      <td>{{ fav_status }} </td>
-      <td>{{ item.location }} </td>
-      <td>{{ item.description }} </td>
-      <td>{{ item.parent().username }}</td>
-      <td><img src= "/img?ID={{ item.key().id() }}&user={{ item.parent().email }}"></img></td>
-      {% if fav_status is even %}
-      <td><a href= "/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here to favor it</a></td>
-      {% else %}
-      <td><a href= "/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here to unfavor it</a></td>
-      {% endif %}
-      
+        <!--descriptions-->
+        <div id="description-field">
+          <p class="item-description">Owner:<br>
+          Price:<br>
+          Condition:<br> 
+          Preferred location: <br>
+          Contact details: <br>
+          </p>
+        </div>
+      </div>
 
-    </tr>
-  </tbody>
-</table>
-</div>
-</body>
+    <script type="text/javascript" scr="bootstrap.min.js"></script> 
+  </body>
 </html>

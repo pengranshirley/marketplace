@@ -1,110 +1,129 @@
-<!-- Front page for Giftbook -->
 <!DOCTYPE HTML>
 <html>
-<head>
-  <title>Marketplace - Select a category</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-  <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
-  <style type="text/css">
+  <head>
+    <title>Marketplace - Category</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
+    <style type="text/css">
       body{
         padding-top: 40px;
-            padding-bottom: 40px;
+        padding-bottom: 40px;
+        background-color: #FFFF99;
       }
       .marketplacebanner2 {
         width: 345px;
         margin-left: auto;
         margin-right: auto;
       }
-      .form-signin{
-        font-family: Helvetica;
-        width: 210px;
-        font-size: 14px;
-        padding: 2px 2px 2px;
-        margin: 50px auto;
-        border: 1px solid #e5e5e5;
-        text-align: center;
+      /* Contain floats: h5bp.com/q */
+      .clearfix:before, .clearfix:after { 
+      content: ""; 
+      display: table; 
       }
-      .gallery{
-        margin: 10px auto;
+      .clearfix:after { 
+        clear: both; 
       }
-      #picture{
-        width: 390px;
-        padding: 10px 10px 10px;
+      .clearfix { 
+        *zoom: 1; 
+      }
+
+      #gallery{
+        width: 1100px;
+        margin: 20px auto;
+      }
+      #content {
+        width: 1100px;
+        margin: 0 auto;
+        padding-top: 5px;
+        background-color: #FFFFCC;
+      }      
+      .picture{
+        width: 360px;
+        display: block;
+        float: left;
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+      .picture img{
+        width: 360px;
+        height: auto;
       }
     </style>
-</head>
-<body>
-  <div class="container">
-    <!--marketplace banner photo -->
-    <div class="marketplacebanner2">
-      <img src="../images/Marketplace%20smaller%20logo%20category.png"/>
+    <script src="js/modernizr-2.5.3.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!--marketplace banner photo -->
+      <div class="marketplacebanner2">
+        <img src="../images/Marketplace%20smaller%20logo%20category.png"/>
+      </div>
+
+      <!--Gallery displaying categories-->
+
+      <div id="gallery">
+
+        <div id="content" class="gallery clearfix">
+
+        <!--Product number1 -->
+    
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
+        </div>
+ 
+
+        <!--Product number2 -->
+     
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example2.jpg" alt=""/></a>
+        </div>
+
+
+        <!--Product number5 -->
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example5.jpg" alt=""/></a>
+        </div>
+
+        <!--Product number4 -->
+  
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example4.jpg" alt=""/></a>
+        </div>
+
+
+
+        <!--Product number3 -->
+    
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example3.jpg" alt=""/></a>
+        </div>
+
+
+        <!--Product number2 -->
+     
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example2.jpg" alt=""/></a>
+        </div>
+
+
+
+
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
+        </div>
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
+        </div>
+        </div>
+      </div>
     </div>
 
-    <!--Gallery displaying categories-->
-    <div class="gallery">
-      <div id='picture'>
-        <img src="../images/category1.jpg"/>
-    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
 
-  </div>
+    <script src="../bootstrap/js/jquery.masonry.min.js"></script>
+    <script src="../bootstrap/js/script.js"></script>
 
-  <div class="container-fluid"> 
-
-    <!-- Top bar --> 
-    <div class="row-fluid top-container">  
-      <div class="span5">
-       <img class="logo" src="../images/logo.png">
-     </div>
-     <div class="span3 offset9 signin-align">
-       <span> Login with <a href="/login"><img src="../images/google.png"></a></span>
-     </div>
-   </div>
-   <!-- End of top bar -->
-
-   <!-- Main navigation -->
-   <div class = "navbar">
-     <div class = "navbar-inner">
-       <ul class = "nav">
-         <li> <a href="/">Home</a> </li>
-       </ul>
-     </div> 
-   </div>
-
-   <div class="row-fluid">
-
-     <div class="span6">
-         <p> Welcome to Category {{ category }} page {{ page }}</p>
-     </div>
-   </div>
-
-   <table class="table table-bordered table-striped" >
-     <thead>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Condition</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th>View in detail</th>
-    </thead>
-
-    <tbody>
-      {% for item in items %}
-      <tr>
-        <td>{{ item.name }} </td>
-        <td>{{ item.category }} </td>
-        <td>{{ item.condition }} </td>
-        <td>{{ item.location }} </td>
-        <td>{{ item.description }} </td>
-        <td><a href= "/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here</a></td>
-
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-
-</div>
-</body>
+  </body>
 </html>

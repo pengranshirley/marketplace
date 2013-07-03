@@ -1,8 +1,7 @@
-<!-- Front page for logged in Giftbook user -->
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Marketplace</title>
+    <title>Marketplace - Select a category</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -10,7 +9,8 @@
     <style type="text/css">
       body{
         padding-top: 40px;
-            padding-bottom: 40px;
+        padding-bottom: 40px;
+        background-color: #FFFF99;
       }
       .marketplacebanner2 {
         width: 345px;
@@ -18,59 +18,80 @@
         margin-right: auto;
       }
       .gallery{
-        margin: 10px auto;
+        width: 1110px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
       }
       #picture{
         width: 360px;
         height: 238px;
-        padding: 10px 10px 10px;
-        float: left;
+        margin-top:5px;
+        margin-left: 5px;
         overflow: hidden;
+      }
+      #picture-frame{
+        width: 370px;
+        height: 248px;
+        float: left;
+        background-color: #FFFFCC;
       }
     </style>  
   </head>
   <body>
     <div class="container">
-    <!--marketplace banner photo -->
-    <div class="marketplacebanner2">
-      <img src="../images/Marketplace%20smaller%20logo%20category.png"/>
-    </div>
 
-    <!--Gallery displaying categories-->
-    <div class="gallery">
-      
-      <!--First category-->
-      <div id='picture'>
-        <a href="/viewCategory?c=[[[clothes]]]&p=1"><img src="../images/category1.jpg"/></a>
+      <!--marketplace banner photo -->
+      <div class="marketplacebanner2">
+        <img src="../images/Marketplace%20smaller%20logo%20bazaar.png"/>
       </div>
 
-      <!--Second category-->
-      <div id='picture'>
-        <a href="/viewCategory?c=[[[clothes]]]&p=1"><img src="../images/category2.jpg"/></a>
-      </div> 
+      <!--Gallery displaying categories-->
+      <div class="gallery">
+        
+        <!--First category-->
+        <div id="picture-frame">
+          <div id='picture'>
+            <a href="/viewCategory?c=clothes&p=1"><img src="../images/category1.jpg"/></a>
+          </div>
+        </div>
 
-      <!--Third category-->
-      <div id='picture'>
-        <a href="/viewCategory?c=[[[clothes]]]&p=1"><img src="../images/category3.jpg"/></a>
-      </div>    
+        <!--Second category-->
+        <div id="picture-frame">  
+          <div id='picture'>
+            <a href="/viewCategory?c=clothes&p=1"><img src="../images/category2.jpg"/></a>
+          </div> 
+        </div>
 
-      <!--Fourth category-->
-      <div id='picture'>
-        <a href="/viewCategory?c=[[[clothes]]]&p=1"><img src="../images/category4.jpg"/></a>
-      </div> 
+        <!--Third category-->
+        <div id="picture-frame">  
+          <div id='picture'>
+            <a href="/viewCategory?c=clothes&p=1"><img src="../images/category3.jpg"/></a>
+          </div>    
+        </div>
 
-      <!--Fifth category-->
-      <div id='picture'>
-        <a href="/viewCategory?c=[[[clothes]]]&p=1"><img src="../images/category5.jpg"/></a>
-      </div>      
+        <!--Fourth category-->
+        <div id="picture-frame">  
+          <div id='picture'>
+            <a href="/viewCategory?c=clothes&p=1"><img src="../images/category4.jpg"/></a>
+          </div> 
+        </div>
 
-      <!--Sixth category-->
-      <div id='picture'>
-        <a href="/viewCategory?c=[[[clothes]]]&p=1"><img src="../images/category6.jpg"/></a>
-      </div>                               
-    </div>
+        <!--Fifth category-->
+        <div id="picture-frame">  
+          <div id='picture'>
+            <a href="/viewCategory?c=clothes&p=1"><img src="../images/category5.jpg"/></a>
+          </div>      
+        </div>
 
-
+        <!--Sixth category-->
+        <div id="picture-frame"> 
+          <div id='picture'>
+            <a href="/viewCategory?c=clothes&p=1"><img src="../images/category6.jpg"/></a>
+          </div>  
+        </div>                               
+      </div>
+    </div>  
   </body>
 </html>
 

@@ -52,4 +52,174 @@
 
 
 
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Category-->
+  <div class="container-fluid"> 
+
+    <!-- Top bar --> 
+    <div class="row-fluid top-container">  
+      <div class="span5">
+       <img class="logo" src="../images/logo.png">
+     </div>
+     <div class="span3 offset9 signin-align">
+       <span> Login with <a href="/login"><img src="../images/google.png"></a></span>
+     </div>
+   </div>
+   <!-- End of top bar -->
+
+   <!-- Main navigation -->
+   <div class = "navbar">
+     <div class = "navbar-inner">
+       <ul class = "nav">
+         <li> <a href="/">Home</a> </li>
+       </ul>
+     </div> 
+   </div>
+
+   <div class="row-fluid">
+
+     <div class="span6">
+         <p> Welcome to Category {{ category }} page {{ page }}</p>
+     </div>
+   </div>
+
+   <table class="table table-bordered table-striped" >
+     <thead>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Condition</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>View in detail</th>
+    </thead>
+
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.name }} </td>
+        <td>{{ item.category }} </td>
+        <td>{{ item.condition }} </td>
+        <td>{{ item.location }} </td>
+        <td>{{ item.description }} </td>
+        <td><a href= "/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here</a></td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+  <!--product.html-->
+<div class="container-fluid"> 
+
+    <!-- Top bar --> 
+    <div class="row-fluid top-container">  
+     <div class="span5">
+       <img class="logo" src="../images/logo.png">
+     </div>
+     <div class="span4 offset8 signin-align">
+       <span> {{ user_mail }} <a href="{{ logout }}">logout</a></span>
+     </div>
+   </div>
+   <!-- End of top bar -->
+
+   <!-- Main navigation -->
+   <div class = "navbar">
+     <div class = "navbar-inner">
+       <ul class = "nav">
+         <li> <a href="/marketplace">Home</a> </li>
+
+       </ul>
+     </div> 
+   </div>
+
+   <h3> Current Product </h3>
+   <table class="table table-bordered table-striped" >
+    <thead>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Favor condition</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Owner</th>
+      <th>picture</th>
+      <th>Favor it!</th>
+    </thead>
+
+
+    <tbody>
+     <tr>
+      <td>{{ item.name }} </td>
+      <td>{{ item.category }} </td>
+      <td>{{ fav_status }} </td>
+      <td>{{ item.location }} </td>
+      <td>{{ item.description }} </td>
+      <td>{{ item.parent().username }}</td>
+      <td><img src= "/img?ID={{ item.key().id() }}&user={{ item.parent().email }}"></img></td>
+      {% if fav_status is even %}
+      <td><a href= "/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here to favor it</a></td>
+      {% else %}
+      <td><a href= "/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here to unfavor it</a></td>
+      {% endif %}
+      
+
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--product.html bootstrap button-->
+
+        <!--like button-->
+        <div id="button-frame">
+          <button class="btn btn-inverse btn-small" type="button"><i class="icon-heart"></i> Like</button>
+          <!-- need to do js for when click change to i class="icon-heart icon-white" i.e. black heart-->
+        </div>
