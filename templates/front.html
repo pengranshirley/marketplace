@@ -1,14 +1,118 @@
-<!-- Front page for Giftbook -->
+<!-- Front page for Marketplace -->
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title> Giftbook</title>
+    <title>Marketplace</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
+    <style type="text/css">
+      body{
+        padding-top: 40px;
+            padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+      .marketplacebanner {
+        width: 547px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .form-signin{
+        font-family: Helvetica;
+        font-size: 14px;
+        max-width: 300px;
+            padding: 9px 19px 19px;
+            margin: 50px auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+            -webkit-border-radius: 5px;
+               -moz-border-radius: 5px;
+                    border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+               -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .Signup{
+        font-size: 12px;
+        width: 150px;
+        margin-top: 200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
   </head>
   <body>
+        <div class="container">
+      <!--marketplace banner photo -->
+      <div class="marketplacebanner">
+        <img src="file:///C:/Users/John/Documents/GitHub/marketplace/templates/Images/Marketplace%20logo.png"/>
+      </div>
+
+      <!-- signin form -->
+      <form class="form-signin">
+        <p>Username: <input type="text" class="input-block-level" placeholder="Gmail address"></p>
+            <p>Password: <input type="password" class="input-block-level" placeholder="Password"><br></p>
+            
+            <!--checkbox to remember-->
+            <label class="checkbox">
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            <br>
+            <br>
+            <!--submit button-->
+            <button class="btn btn-small btn-success" type="submit">Sign in</button>
+      </form> 
+
+      <!--if account != database || input != password 
+        show invalid 
+
+      <div class="control-group warning">
+        <label class="control-label" for="inputWarning">Input with warning</label>
+        <div class="controls">
+          <input type="text" id="inputWarning">
+          <span class="help-inline">Something may have gone wrong</span>
+        </div>
+      </div>
+       
+      <div class="control-group error">
+        <label class="control-label" for="inputError">Input with error</label>
+        <div class="controls">
+          <input type="text" id="inputError">
+          <span class="help-inline">Please correct the error</span>
+        </div>
+      </div>
+       
+      <div class="control-group info">
+        <label class="control-label" for="inputInfo">Input with info</label>
+        <div class="controls">
+          <input type="text" id="inputInfo">
+          <span class="help-inline">Username is already taken</span>
+        </div>
+      </div>
+       
+      <div class="control-group success">
+        <label class="control-label" for="inputSuccess">Input with success</label>
+        <div class="controls">
+          <input type="text" id="inputSuccess">
+          <span class="help-inline">Woohoo!</span>
+        </div>
+      </div>
+
+      if account == database
+        load main page with profile data
+      -->
+      <!--no account-->
+      <div class="Signup">
+        First time here? Sign up <a href="signup.html">here<a>!
+      </div>
+    </div>
+
+
+
+
+    <!--Your original coding -->
     <div class="container-fluid"> 
 
       <!-- Top bar --> 
@@ -42,5 +146,18 @@
 	</div>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
   </body>
 </html>
