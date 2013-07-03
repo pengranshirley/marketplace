@@ -12,6 +12,13 @@ indexes:
 
 - kind: Items
   properties:
+  - name: category
+  - name: sold
+  - name: date
+    direction: desc
+
+- kind: Items
+  properties:
   - name: email
   - name: date
     direction: desc

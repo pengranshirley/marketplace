@@ -1,5 +1,5 @@
-front.html ---> the page before login 
-frontuser.html --> the page after login
+index.html ---> the page before login 
+bazaar.html --> the page after login
 category.html --> (Not finished yet) Supposed to display products under given category
   sorted by create date, display 9 items per page
 product.html --> display single product

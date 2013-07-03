@@ -59,7 +59,7 @@ class MainPage(webapp2.RequestHandler):
           'user_mail': users.get_current_user().email(),
           'logout': users.create_logout_url(self.request.host_url),
         } 
-        template = jinja_environment.get_template('frontuser.html')
+        template = jinja_environment.get_template('bazaar.html')
         self.response.out.write(template.render(template_values))
     else:
       self.redirect(self.request.host_url)
