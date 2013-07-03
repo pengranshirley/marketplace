@@ -8,7 +8,7 @@ jinja_environment = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
   """ Handler for the front page."""
   def get(self):
-      template = jinja_environment.get_template('front.html')
+      template = jinja_environment.get_template('index.html')
       self.response.out.write(template.render())
       
 app = webapp2.WSGIApplication([('/', MainPage)],
