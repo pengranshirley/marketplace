@@ -223,3 +223,220 @@
           <button class="btn btn-inverse btn-small" type="button"><i class="icon-heart"></i> Like</button>
           <!-- need to do js for when click change to i class="icon-heart icon-white" i.e. black heart-->
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--profile.html-->
+<h4>User Profile</h4>
+  <p> User info 
+    username: {{ user.username }} <br>
+    email: {{ user.email }} <br>
+    description: {{ user.description }} <br>
+  </p>
+  <div>
+    Items on sale
+
+    <table class="table table-bordered table-striped" >
+      <thead>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Condition</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>View in detail</th>
+        <th>Sold??</th>
+      </thead>
+
+      <tbody>
+        {% for item in items_onsale %}
+        <tr>
+          <td>{{ item.name }} </td>
+          <td>{{ item.category }} </td>
+          <td>{{ item.condition }} </td>
+          <td>{{ item.location }} </td>
+          <td>{{ item.description }} </td>
+          <td><a href= "/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here</a></td>
+          <td><a href= "/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">I have sold it!</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+  <div>
+    Items sold already
+
+    <table class="table table-bordered table-striped" >
+      <thead>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Condition</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>View in detail</th>
+        <th>Sold??</th>
+      </thead>
+
+      <tbody>
+        {% for item in items_sold %}
+        <tr>
+          <td>{{ item.name }} </td>
+          <td>{{ item.category }} </td>
+          <td>{{ item.condition }} </td>
+          <td>{{ item.location }} </td>
+          <td>{{ item.description }} </td>
+          <td><a href= "/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click here</a></td>
+          <td><a href= "/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Click to resell!</a></td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--Category js-->
+  <style type="text/css">
+      body{
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #FFFF99;
+      }
+      .marketplacebanner2 {
+        width: 345px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      /* Contain floats: h5bp.com/q */
+      .clearfix:before, .clearfix:after { 
+      content: ""; 
+      display: table; 
+      }
+      .clearfix:after { 
+        clear: both; 
+      }
+      .clearfix { 
+        *zoom: 1; 
+      }
+
+      #gallery{
+        width: 1100px;
+        margin: 20px auto;
+      }
+      #content {
+        width: 1100px;
+        margin: 0 auto;
+        padding-top: 5px;
+        background-color: #FFFFCC;
+      }      
+      .picture{
+        width: 360px;
+        display: block;
+        float: left;
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+      .picture img{
+        width: 360px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!--marketplace banner photo -->
+      <div class="marketplacebanner2">
+        <img src="../images/Marketplace%20smaller%20logo%20category.png"/>
+      </div>
+
+      <!--Gallery displaying categories-->
+
+      <div id="gallery">
+
+        <div id="content" class="gallery clearfix">
+
+        <!--Product number1 -->
+    
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
+        </div>
+ 
+
+        <!--Product number2 -->
+     
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example2.jpg" alt=""/></a>
+        </div>
+
+
+        <!--Product number5 -->
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example5.jpg" alt=""/></a>
+        </div>
+
+        <!--Product number4 -->
+  
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example4.jpg" alt=""/></a>
+        </div>
+
+
+
+        <!--Product number3 -->
+    
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example3.jpg" alt=""/></a>
+        </div>
+
+
+        <!--Product number2 -->
+     
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example2.jpg" alt=""/></a>
+        </div>
+
+
+
+
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
+        </div>
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="js/modernizr-2.5.3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+
+    <script src="../bootstrap/js/jquery.masonry.min.js"></script>
+    <script src="../bootstrap/js/script.js"></script>
