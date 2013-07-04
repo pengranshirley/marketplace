@@ -68,10 +68,13 @@ class registration(webapp2.RequestHandler):
   def get(self):
       user = users.get_current_user()
       if user:
-        template = jinja_environment.get_template('signup.html')
-        self.response.out.write(template.render())
+         template_values = {        
+          'logout': users.create_logout_url(self.request.host_url),
+         }
+         template = jinja_environment.get_template('signup.html')
+         self.response.out.write(template.render(template_values))
       else:
-        self.redirect("/bazaar")
+         self.redirect("/bazaar")
 
 class SellForm(webapp2.RequestHandler):
   def get(self):

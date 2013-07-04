@@ -1,129 +1,94 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Marketplace - Category</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
-    <style type="text/css">
-      body{
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #FFFF99;
-      }
-      .marketplacebanner2 {
-        width: 345px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      /* Contain floats: h5bp.com/q */
-      .clearfix:before, .clearfix:after { 
-      content: ""; 
-      display: table; 
-      }
-      .clearfix:after { 
-        clear: both; 
-      }
-      .clearfix { 
-        *zoom: 1; 
-      }
+<head>
+  <title>Marketplace - Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
-      #gallery{
-        width: 1100px;
-        margin: 20px auto;
-      }
-      #content {
-        width: 1100px;
-        margin: 0 auto;
-        padding-top: 5px;
-        background-color: #FFFFCC;
-      }      
-      .picture{
-        width: 360px;
-        display: block;
-        float: left;
-        margin-left: 5px;
-        margin-bottom: 5px;
-      }
-      .picture img{
-        width: 360px;
-        height: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <!--marketplace banner photo -->
-      <div class="marketplacebanner2">
-        <img src="../images/Marketplace%20smaller%20logo%20category.png"/>
-      </div>
+  <style type="text/css">
+  body{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #FFFF99;
+  }
+  .marketplacebanner2 {
+    width: 345px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Contain floats: h5bp.com/q */
+  .clearfix:before, .clearfix:after { 
+    content: ""; 
+    display: table; 
+  }
+  .clearfix:after { 
+    clear: both; 
+  }
+  .clearfix { 
+    *zoom: 1; 
+  }
 
-      <!--Gallery displaying categories-->
-
-      <div id="gallery">
-
-        <div id="content" class="gallery clearfix">
-
-        <!--Product number1 -->
-    
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
-        </div>
- 
-
-        <!--Product number2 -->
-     
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example2.jpg" alt=""/></a>
-        </div>
-
-
-        <!--Product number5 -->
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example5.jpg" alt=""/></a>
-        </div>
-
-        <!--Product number4 -->
+  #gallery{
+    width: 1105px;
+    margin: 20px auto;
+  }
+  #content {
+    width: 1105px;
+    margin: 0 auto;
+    padding-top: 5px;
+    background-color: #FFFFCC;
+  }    
   
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example4.jpg" alt=""/></a>
-        </div>
+  
+  .picture{
+    width: 355px;
+    display: inline-block;
+
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+  .picture img{
+    width: 355px;
+    height: auto;
+  }
+  
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!--marketplace banner photo -->
+    <div class="marketplacebanner2">
+      <img src="../images/Marketplace%20smaller%20logo%20category.png"/>
+    </div>
+
+    <!--Gallery displaying categories-->
+
+    <div id="gallery">
+
+      <div id="content" class="gallery clearfix">
 
 
+        {% for item in items %}
+          <div class="picture" >
+            <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+              <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
+            </a>
+          </div>
 
-        <!--Product number3 -->
-    
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example3.jpg" alt=""/></a>
-        </div>
+        {% endfor %}
 
-
-        <!--Product number2 -->
-     
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example2.jpg" alt=""/></a>
-        </div>
-
-
-
-
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
-        </div>
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"><img src="../images/example1.jpg" alt=""/></a>
-        </div>
-        </div>
       </div>
     </div>
-    
-    <script src="js/modernizr-2.5.3.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+  </div>
 
-    <script src="../bootstrap/js/jquery.masonry.min.js"></script>
-    <script src="../bootstrap/js/script.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <!--
+  <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+  -->
+  <script src="../bootstrap/js/jquery.masonry.min.js"></script>
+  <script src="../bootstrap/js/script.js"></script>
 
-  </body>
+</body>
 </html>
