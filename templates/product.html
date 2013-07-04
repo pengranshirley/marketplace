@@ -48,7 +48,7 @@
     }
     #solopicture{
       width: 360px;
-      padding: 10px;
+      padding-top: 10px;
     }
     #description-field{
       width: 360px;
@@ -90,10 +90,17 @@
         <img src="../images/Marketplace%20smaller%20logo%20item.png"/>
       </div>
 
+      <div style="text-align: center">
+        <a class="btn" href="/bazaar"> Bazaar </a>
+        <a class="btn" href="/profile"> Profile </a>
+        <a class="btn" href="/favorite"> Favorites </a>
+        <a class="btn" href={{ logout }}> Log out </a>
+      </div> 
+
       <!--item photo-->
       <div id="pictureframe">
         <div id="solopicture">
-          <img src="../images/example1.jpg">
+          <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}">
         </div>
       </div>
 
@@ -101,13 +108,30 @@
 
         <!--Home made like button-->
         <div id="home-made-button">
-          <span><i class="icon-heart"></i></span> 
+          <span>
+            {% if fav_status is even %}
+              <a href= "/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+                <i class="icon-heart"></i>
+              </a>
+            {% else %}
+              <a href= "/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+                <i class="icon-heart icon-white"></i> 
+              </a>
+            {% endif %}
+
+           
+
+          </span> 
+          
+
           <!-- need to link this icon-heart to the favourite action and once favourite, need to add js when click change to icon-heart icon-white-->
+
+
         </div>
 
         <!--item name-->
         <div id="item-name">
-          <p>{item name}
+          <p>{{ item.name }}
         </div>
         <div class="clear"></div>
       </div>
@@ -118,15 +142,24 @@
 
         <!--descriptions-->
         <div id="description-field">
-          <p class="item-description">Owner:<br>
+          <p class="item-description">Owner: {{ item.parent().username }} <br>
           Price:<br>
-          Condition:<br> 
-          Preferred location: <br>
+          Condition: {{ item.condition }}<br> 
+          Preferred location: {{ item.location }}<br>
           Contact details: <br>
           </p>
         </div>
       </div>
 
+<!--
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>  
+-->
     <script type="text/javascript" scr="bootstrap.min.js"></script> 
+<!--
+    <script>
+      $(document).ready(function() {
+      })
+    </script>
+-->
   </body>
 </html>

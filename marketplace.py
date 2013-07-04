@@ -68,13 +68,13 @@ class registration(webapp2.RequestHandler):
   def get(self):
       user = users.get_current_user()
       if user:
-         template_values = {        
+        template_values = {
           'logout': users.create_logout_url(self.request.host_url),
-         }
-         template = jinja_environment.get_template('signup.html')
-         self.response.out.write(template.render(template_values))
+        } 
+        template = jinja_environment.get_template('signup.html')
+        self.response.out.write(template.render(template_values))
       else:
-         self.redirect("/bazaar")
+        self.redirect(self.request.host_url)
 
 class SellForm(webapp2.RequestHandler):
   def get(self):
@@ -83,7 +83,7 @@ class SellForm(webapp2.RequestHandler):
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render())
       else:
-        self.redirect("/bazaar")
+        self.redirect(self.request.host_url)
 
 # Handle user registration, corresponds to "register"
 class AddUser(webapp2.RequestHandler):
@@ -105,7 +105,7 @@ class AddUser(webapp2.RequestHandler):
          template = jinja_environment.get_template('bazaar.html')
          self.response.out.write(template.render(template_values))
     else:
-        self.redirect("/bazaar")
+        self.redirect(self.request.host_url)
 
 class UserProfile(webapp2.RequestHandler):
   def get(self):
@@ -139,7 +139,7 @@ class UserProfile(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
      else:
-        self.redirect("/bazaar")
+        self.redirect(self.request.host_url)
 
 
 class AddItem(webapp2.RequestHandler):
@@ -157,7 +157,7 @@ class AddItem(webapp2.RequestHandler):
         item.image_link = self.request.get('image_url')
         # didn't check whether it's indeed an image
         picture = self.request.get('img')
-        item.img = db.Blob(picture)
+        item.img = db.Blob(images.resize(picture, 360, 400))
         item.put()
         fav = 0
         self.redirect("/viewProduct?ID="+str(item.key().id())+"&user="+user.email())
@@ -173,7 +173,7 @@ class AddItem(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
         """
     else:
-        self.redirect("/bazaar")
+        self.redirect(self.request.host_url)
 
 class SoldCondition(webapp2.RequestHandler):
   def get(self, name):
@@ -192,7 +192,7 @@ class SoldCondition(webapp2.RequestHandler):
       self.redirect("/profile")
 
     else:
-      self.redirect("/bazaar")
+      self.redirect(self.request.host_url)
 
 class RemoveFavorite(webapp2.RequestHandler):
   def get(self, name):
@@ -214,7 +214,7 @@ class RemoveFavorite(webapp2.RequestHandler):
       self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
 
     else:
-      self.redirect("/bazaar")
+      self.redirect(self.request.host_url)
 
 
 class AddFavorite(webapp2.RequestHandler):
@@ -232,7 +232,29 @@ class AddFavorite(webapp2.RequestHandler):
       self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
 
     else:
-      self.redirect("/bazaar")
+      self.redirect(self.request.host_url)
+
+class ViewFavorite(webapp2.RequestHandler):
+  def get(self):
+    user = users.get_current_user()
+    if user:
+        query = db.GqlQuery("SELECT * "
+                            "FROM Favorite "
+                            "WHERE userID = :1",
+                            user.email())
+
+        template_values = {
+              'user_mail': users.get_current_user().email(),
+              'logout': users.create_logout_url(self.request.host_url),
+              'items': query,
+        } 
+        template = jinja_environment.get_template('favorite.html')
+        self.response.out.write(template.render(template_values)) 
+
+    else:
+      self.redirect(self.request.host_url)
+
+
 
 
 
@@ -307,6 +329,8 @@ class DisplayProduct(webapp2.RequestHandler):
       }
       template = jinja_environment.get_template('product.html')
       self.response.out.write(template.render(template_values))
+    else:
+      self.redirect(self.request.host_url)
 
 app = webapp2.WSGIApplication([('/bazaar', MainPage),
                                ('/signup',registration),
@@ -314,6 +338,7 @@ app = webapp2.WSGIApplication([('/bazaar', MainPage),
                                ('/profile', UserProfile),
                                ('/new', SellForm),
                                ('/create', AddItem),
+                               ('/favorite', ViewFavorite),
                                (r'/viewCategory(.*)', DisplayByC),
                                (r'/img(.*)', ViewImage),
                                (r'/addFavorite(.*)', AddFavorite),

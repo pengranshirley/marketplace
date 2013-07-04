@@ -56,7 +56,10 @@
   <div class="container">
     <!--marketplace banner photo -->
     <div class="marketplacebanner2">
+      <!--
       <img src="../images/Marketplace%20smaller%20logo%20category.png"/>
+      -->
+      <h3>My Favorites!!!</h3>
     </div>
 
     <!--Gallery displaying categories-->
@@ -68,8 +71,8 @@
         <!--Product number1 -->
         {% for item in items %}
         <div class="picture">
-          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-            <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
+          <a href="/viewProduct?ID={{ item.productID }}&user={{ item.parentID }}">
+            <img src="/img?ID={{ item.productID }}&user={{ item.parentID }}" alt=""/>
           </a>
         </div>
         {% endfor %}
