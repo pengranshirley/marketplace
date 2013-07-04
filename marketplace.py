@@ -18,6 +18,7 @@ class Persons(db.Model):
   """Models a person identified by email"""
   email = db.StringProperty()
   username = db.StringProperty()
+  contact = db.StringProperty()
   registerDate = db.DateTimeProperty(auto_now_add=True)
   description = db.StringProperty(multiline=True)
   
@@ -27,6 +28,7 @@ class Items(db.Model):
   category = db.StringProperty()
   condition = db.StringProperty()
   name = db.StringProperty()
+  price = db.StringProperty()
   location = db.StringProperty()
   image_link = db.StringProperty()
   img = db.BlobProperty()
@@ -95,6 +97,7 @@ class AddUser(webapp2.RequestHandler):
          newPerson.email = email
          newPerson.description = self.request.get('user_description')
          newPerson.username = self.request.get('username')
+         newPerson.contact = self.request.get('contact-number')
          newPerson.put()
          #afterwards, redirect to the main page (9 categories)
          template_values = {
@@ -155,6 +158,7 @@ class AddItem(webapp2.RequestHandler):
         item.name = self.request.get("item_name")
         item.location = self.request.get("item_location")
         item.image_link = self.request.get('image_url')
+        item.price = self.request.get('item_price')
         # didn't check whether it's indeed an image
         picture = self.request.get('img')
         item.img = db.Blob(images.resize(picture, 360, 400))
@@ -269,7 +273,7 @@ class ViewImage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'image/jpeg'
         self.response.out.write(img)
       else:
-        self.redirect('/images/gift.jpg')
+        self.redirect('/images/default_img_product.png')
 
 
 class DisplayByC(webapp2.RequestHandler):

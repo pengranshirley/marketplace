@@ -94,6 +94,7 @@
         <a class="btn" href="/bazaar"> Bazaar </a>
         <a class="btn" href="/profile"> Profile </a>
         <a class="btn" href="/favorite"> Favorites </a>
+        <a class="btn" href="/new"> Sell </a>
         <a class="btn" href={{ logout }}> Log out </a>
       </div> 
 
@@ -143,10 +144,10 @@
         <!--descriptions-->
         <div id="description-field">
           <p class="item-description">Owner: {{ item.parent().username }} <br>
-          Price:<br>
+          Price:{{ item.price }}<br>
           Condition: {{ item.condition }}<br> 
           Preferred location: {{ item.location }}<br>
-          Contact details: <br>
+          Contact details: {{item.parent().contact }} <br>
           </p>
         </div>
       </div>

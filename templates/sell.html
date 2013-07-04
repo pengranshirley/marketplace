@@ -1,7 +1,7 @@
  <!DOCTYPE HTML>
  <html>
  <head>
- 	<title>Marketplace - Place your item for sale</title>
+ 	<title> Giftbook</title>
  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
  	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -12,11 +12,12 @@
  		padding-bottom: 40px;
  		background-color: #FFFF99;
  	}
-	.marketplacebanner2 {
-	width: 345px;
-	margin-left: auto;
-	margin-right: auto;
-	}
+ 	.marketplacebanner2 {
+ 		width: 345px;
+ 		margin-left: auto;
+ 		margin-right: auto;
+ 	}
+
  	.information{
  		margin: 50px auto;
  		width: 450px;
@@ -31,18 +32,15 @@
 
  <body>
  	<div class="container">
-		<!--marketplace banner photo -->
-		<div class="marketplacebanner2">
-		<img src="../images/Marketplace%20smaller%20logo%20selling.png"/>
-		</div>
 
+ 		<div class="marketplacebanner2">
 
- 		
+ 			<img src="../images/Marketplace%20smaller%20logo%20selling.png"/>
+
+ 		</div>
  		<div class="information">
  			<form  action="/create" method="post" enctype="multipart/form-data" class="form-horizontal">  
- 				<legend style="text-aligned: center">
- 					Sell your item!
- 				</legend>
+
  				<div class="control-group">
  					<label class="control-label" for="item_name">Item name</label>
  					<div class="controls">
@@ -67,7 +65,14 @@
  				<div class="control-group">
  					<label class="control-label" for="item_condition">Item condition</label>
  					<div class="controls">
- 						<input type="text" id="input_name" placeholder="How's the condition?" type="text"name="item_condition" >
+ 						<input type="text" id="item_condition" placeholder="How's the condition?" type="text"name="item_condition" >
+ 					</div>
+ 				</div>
+
+ 				<div class="control-group">
+ 					<label class="control-label" for="item_price">Item price</label>
+ 					<div class="controls">
+ 						<input type="text" id="item_price" placeholder="What's the price?" type="text"name="item_price" >
  					</div>
  				</div>
 
@@ -103,7 +108,7 @@
 
  				<div class="form-actions">
  					<button type="submit" class="btn btn-primary">Save changes</button>
- 					<button type="button" class="btn">Cancel</button>
+ 					<a class="btn" href="/bazaar">Cancel</a>
  				</div>
 
  			</form>	

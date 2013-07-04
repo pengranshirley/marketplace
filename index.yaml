@@ -28,3 +28,10 @@ indexes:
   properties:
   - name: date
     direction: desc
+
+- kind: Items
+  ancestor: yes
+  properties:
+  - name: sold
+  - name: date
+    direction: desc
