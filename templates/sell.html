@@ -6,38 +6,98 @@
  	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
  	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
  	<link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
+ 	<style type="text/css">
+ 	body{
+ 		padding-top: 40px;
+ 		padding-bottom: 40px;
+ 		background-color: #FFFF99;
+ 	}
+
+
+ 	.information{
+ 		margin: 50px auto;
+ 		width: 450px;
+ 		background-color: white;
+ 		padding: 10px;
+ 		border: solid;
+ 		border-width: 0.5px;
+ 		border-color: #cccccc;
+ 	}
+ 	</style>
  </head>
 
  <body>
- 	<h4>Sign up!</h4>
+ 	<div class="container">
+ 		<div class="information">
+ 			<form  action="/create" method="post" enctype="multipart/form-data" class="form-horizontal">  
+ 				<legend style="text-aligned: center">
+ 					Sell your item!
+ 				</legend>
+ 				<div class="control-group">
+ 					<label class="control-label" for="item_name">Item name</label>
+ 					<div class="controls">
+ 						<input type="text" id="input_name" placeholder="Name?" type="text" name="item_name" >
+ 					</div>
+ 				</div>
 
- 	<form  action="/create" method="post">  
- 		<fieldset>
- 			Item Name: <input class = "input-xlarge" type="text" name="item_name" > 
+ 				<div class="control-group">
+ 					<label class="control-label" for="item_category">Category</label>
+ 					<div class="controls">
+ 						<select id="item_category" name="item_category"> 
+ 							<option value="clothes">clothes</option>
+ 							<option value="electronics">electronics</option>
+ 							<option value="shoes">shoes</option>	   	   
+ 							<option value="books">books</option>	   
+ 							<option value="cameras">cameras</option>	   
+ 							<option value="miscellaneous">miscellaneous</option>	   
+ 						</select>
+ 					</div>
+ 				</div>
 
- 			Item condition: <input class = "input-xlarge" type="text" name="item_condition" > 
-
- 			Item Picture (use img link temporarily): <input class = "input-xlarge" type="text" name="image_link" >
-
- 			Item location : <select id="location" name="item_location">
-	 			 <option value="1">South</option>
-	 			 <option value="2">East</option>
-
- 			<p> Item description: <br>
- 				<textarea class="input-block-level" name="desc" rows="3" > </textarea>
- 			</p>
+ 				<div class="control-group">
+ 					<label class="control-label" for="item_condition">Item condition</label>
+ 					<div class="controls">
+ 						<input type="text" id="input_name" placeholder="How's the condition?" type="text"name="item_condition" >
+ 					</div>
+ 				</div>
 
 
- 			Category: <select id="category" name="item_category"> 
-	 			 <option value="clothes">clothes</option>
-	 			 <option value="electronics">electronics</option>	   
-	 			 <option value="bag">bags</option>	   
-	 			 <option value="4">Choice 4</option>	   
-	 			 <option value="5">Choice 5</option>	   
+ 				<div class="control-group">
+ 					<label class="control-label" for="item_location">Item location</label>
+ 					<div class="controls">
+ 						<select id="location" name="item_location">
+ 							<option value="South">South</option>
+ 							<option value="East">East</option>
+ 							<option value="West">West</option>
+ 							<option value="North">North</option>
+ 							<option value="Central">Central</option>
+ 						</select>
+ 					</div>
+ 				</div>
 
- 			</select>
- 		</fieldset>
- 		<input type="submit" value="Submit">
- 	</form>	
+ 				<div class="control-group">
+ 					<label class="control-label" for="desc">Brief discription</label>
+ 					<div class="controls">	
+ 						<textarea rows="3" id="desc" name="desc" rows="3"> </textarea>
+ 					</div>
+ 				</div>
+
+ 				<div class="control-group">
+ 					<label class="control-label" for="img">Picture</label>
+ 					<div class="controls">	
+ 						<input type="file" name="img"/>
+ 					</div>
+ 				</div>
+
+
+
+ 				<div class="form-actions">
+ 					<button type="submit" class="btn btn-primary">Save changes</button>
+ 					<button type="button" class="btn">Cancel</button>
+ 				</div>
+
+ 			</form>	
+ 		</div>
+ 	</div>
  </body>
  </html>
