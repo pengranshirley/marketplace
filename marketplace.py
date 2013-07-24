@@ -161,7 +161,8 @@ class AddItem(webapp2.RequestHandler):
         item.price = self.request.get('item_price')
         # didn't check whether it's indeed an image
         picture = self.request.get('img')
-        item.img = db.Blob(images.resize(picture, 360, 400))
+        if picture:
+          item.img = db.Blob(images.resize(picture, 360, 400))
         item.put()
         fav = 0
         self.redirect("/viewProduct?ID="+str(item.key().id())+"&user="+user.email())
@@ -215,7 +216,7 @@ class RemoveFavorite(webapp2.RequestHandler):
       for p in query:
         p.delete()
 
-      self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
+     # self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
 
     else:
       self.redirect(self.request.host_url)
@@ -233,7 +234,7 @@ class AddFavorite(webapp2.RequestHandler):
       favorite.parentID = parent_email
       favorite.userID = current_user
       favorite.put()
-      self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
+      #self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
 
     else:
       self.redirect(self.request.host_url)
@@ -273,7 +274,7 @@ class ViewImage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'image/jpeg'
         self.response.out.write(img)
       else:
-        self.redirect('/images/default_img_product.png')
+        self.redirect("http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image")
 
 
 class DisplayByC(webapp2.RequestHandler):
@@ -317,7 +318,7 @@ class DisplayProduct(webapp2.RequestHandler):
                           "FROM Favorite "
                           "WHERE productID = :1 AND parentID = :2 AND userID = :3",
                           key, parent_email, current_user)
-      query_2 = query.fetch(1)
+      query_2 = query.get()
 
       if query_2:
         fav = 1

@@ -5,103 +5,147 @@
  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
  	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+ 	<link href="../scripts/bootstrap-fileupload.min.css" rel="stylesheet"> 	
+ 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+ 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
  	<style type="text/css">
- 	body{
- 		padding-top: 40px;
- 		padding-bottom: 40px;
- 		background-color: #FFFF99;
+ 		body{
+ 			padding-top: 40px;
+ 			padding-bottom: 40px;
+ 			background-color: #FFFF99;
+ 		}
+ 		.marketplacebanner2 {
+ 			width: 345px;
+ 			margin-left: auto;
+ 			margin-right: auto;
+ 		}
+
+ 		.information{
+ 			margin: 50px auto;
+ 			width: 450px;
+ 			background-color: white;
+ 			padding: 10px;
+ 			border: solid;
+ 			border-width: 0.5px;
+ 			border-color: #cccccc;
+ 		}
+
+
+ 		#loading {
+ 			width: 100%;
+ 			height: 100%;
+ 			top: 0px;
+ 			left: 0px;
+ 			position: fixed;
+ 			opacity: 0.7;
+ 			background-color: #fff;
+ 			z-index: 99;
+ 		}
+
+ 		#loading-icon {
+ 			position: absolute;
+ 			top: 50%;
+ 			left: 50%;
+ 			z-index: 100;
+ 		}
+
+
  	}
- 	.marketplacebanner2 {
- 		width: 345px;
- 		margin-left: auto;
- 		margin-right: auto;
- 	}
+ </style>
+</head>
 
- 	.information{
- 		margin: 50px auto;
- 		width: 450px;
- 		background-color: white;
- 		padding: 10px;
- 		border: solid;
- 		border-width: 0.5px;
- 		border-color: #cccccc;
- 	}
- 	</style>
- </head>
+<body>
+	<div class="container">
 
- <body>
- 	<div class="container">
+		<div id="loading">
+			<i id="loading-icon" class="icon-refresh blue icon-2x icon-spin"></i>
+		</div>
 
- 		<div class="marketplacebanner2">
+		<div class="marketplacebanner2">
 
- 			<img src="../images/Marketplace_smaller_logo_selling.png"/>
+			<img src="../images/Marketplace_smaller_logo_selling.png"/>
 
- 		</div>
- 		<div class="information">
- 			<form  action="/create" method="post" enctype="multipart/form-data" class="form-horizontal">  
+		</div>
+		<div class="information">
+			<form  id="myForm" action="/create" method="post" enctype="multipart/form-data" class="form-horizontal">  
 
- 				<div class="control-group">
- 					<label class="control-label" for="item_name">Item name</label>
- 					<div class="controls">
- 						<input type="text" id="input_name" placeholder="Name?" type="text" name="item_name" >
- 					</div>
- 				</div>
+				<div class="control-group">
+					<label class="control-label" for="item_name">Item name</label>
+					<div class="controls">
+						<input type="text" id="input_name" placeholder="Name?" type="text" name="item_name" >
+					</div>
+				</div>
 
- 				<div class="control-group">
- 					<label class="control-label" for="item_category">Category</label>
- 					<div class="controls">
- 						<select id="item_category" name="item_category"> 
- 							<option value="clothes">clothes</option>
- 							<option value="electronics">electronics</option>
- 							<option value="shoes">shoes</option>	   	   
- 							<option value="books">books</option>	   
- 							<option value="cameras">cameras</option>	   
- 							<option value="miscellaneous">miscellaneous</option>	   
- 						</select>
- 					</div>
- 				</div>
+				<div class="control-group">
+					<label class="control-label" for="item_category">Category</label>
+					<div class="controls">
+						<select id="item_category" name="item_category"> 
+							<option value="clothes">clothes</option>
+							<option value="electronics">electronics</option>
+							<option value="shoes">shoes</option>	   	   
+							<option value="books">books</option>	   
+							<option value="cameras">cameras</option>	   
+							<option value="miscellaneous">miscellaneous</option>	   
+						</select>
+					</div>
+				</div>
 
- 				<div class="control-group">
- 					<label class="control-label" for="item_condition">Item condition</label>
- 					<div class="controls">
- 						<input type="text" id="item_condition" placeholder="How's the condition?" type="text"name="item_condition" >
- 					</div>
- 				</div>
+				<div class="control-group">
+					<label class="control-label" for="item_condition">Item condition</label>
+					<div class="controls">
+						<input type="text" required id="item_condition" placeholder="How's the condition?" type="text"name="item_condition" >
+					</div>
+				</div>
 
- 				<div class="control-group">
- 					<label class="control-label" for="item_price">Item price</label>
- 					<div class="controls">
- 						<input type="text" id="item_price" placeholder="What's the price?" type="text"name="item_price" >
- 					</div>
- 				</div>
+				<div class="control-group">
+					<label class="control-label" for="item_price">Item price</label>
+					<div class="controls">
+						<input type="text" id="item_price" placeholder="What's the price?" type="text"name="item_price" >
+					</div>
+				</div>
 
 
- 				<div class="control-group">
- 					<label class="control-label" for="item_location">Item location</label>
- 					<div class="controls">
- 						<select id="location" name="item_location">
- 							<option value="South">South</option>
- 							<option value="East">East</option>
- 							<option value="West">West</option>
- 							<option value="North">North</option>
- 							<option value="Central">Central</option>
- 						</select>
- 					</div>
- 				</div>
+				<div class="control-group">
+					<label class="control-label" for="item_location">Item location</label>
+					<div class="controls">
+						<select id="location" name="item_location">
+							<option value="South">South</option>
+							<option value="East">East</option>
+							<option value="West">West</option>
+							<option value="North">North</option>
+							<option value="Central">Central</option>
+						</select>
+					</div>
+				</div>
 
- 				<div class="control-group">
- 					<label class="control-label" for="desc">Brief discription</label>
- 					<div class="controls">	
- 						<textarea rows="3" id="desc" name="desc" rows="3"> </textarea>
- 					</div>
- 				</div>
-
+				<div class="control-group">
+					<label class="control-label" for="desc">Brief discription</label>
+					<div class="controls">	
+						<textarea rows="3" id="desc" name="desc" rows="3"> </textarea>
+					</div>
+				</div>
+<!--
  				<div class="control-group">
  					<label class="control-label" for="img">Picture</label>
  					<div class="controls">	
  						<input type="file" name="img"/>
  					</div>
  				</div>
+ 			-->
+ 			<div class="control-group">
+ 				<label class="control-label" for="img">Picture</label>
+ 				<div class="controls">	
+
+ 					<div class="fileupload fileupload-new" data-provides="fileupload">
+ 						<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
+ 						<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+ 						<div>
+ 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="img"/></span>
+ 							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+ 						</div>
+ 					</div>
+ 				</div></div>
 
 
 
@@ -113,5 +157,42 @@
  			</form>	
  		</div>
  	</div>
+
+
+ 	<script src="../scripts/jquery-1.9.1.min.js"></script>
+ 	<!--
+ 	<script src="../scripts/jquery.validate.js"></script>
+ 	-->
+ 	<script src="../scripts/bootstrap-fileupload.min.js"></script>
+
+
+
+ 	<script>
+ 		$(document).ready(function() {
+ 			$("#loading").hide();
+
+
+ 			$("#myForm").validate({
+ 				rules : {
+ 				
+ 					item_name : "required",
+ 					item_category : "required",
+ 					item_condition : "required",
+ 					item_price : "required",
+ 					item_location: "required",
+ 					desc: "required",
+ 			
+ 				},
+
+ 				submitHandler: function(form) {
+ 					$("#submit").attr("disabled",true);
+ 					$("#loading").show();
+ 					$("#myForm").submit();
+ 				}
+			});
+
+
+ 		})
+ 	</script>
  </body>
  </html>

@@ -1,13 +1,12 @@
 <!-- Wish list -->
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Marketplace - Item</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
-    <style type="text/css">
+<head>
+  <title>Marketplace - Item</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <style type="text/css">
     body{
       padding-top: 40px;
       padding-bottom: 40px;
@@ -81,58 +80,58 @@
       text-align: ;
       float: right;
     }    
-    </style>          
-  </head>
-  <body>
-    <div class="container">
-      <!--marketplace banner photo -->
-      <div class="marketplacebanner2">
-        <img src="../images/Marketplace_smaller_logo_item.png"/>
+  </style>          
+</head>
+<body>
+  <div class="container">
+    <!--marketplace banner photo -->
+    <div class="marketplacebanner2">
+      <img src="../images/Marketplace_smaller_logo_item.png"/>
+    </div>
+
+    <div style="text-align: center">
+      <a class="btn" href="/bazaar"> Bazaar </a>
+      <a class="btn" href="/profile"> Profile </a>
+      <a class="btn" href="/favorite"> Favorites </a>
+      <a class="btn" href="/new"> Sell </a>
+      <a class="btn" href={{ logout }}> Log out </a>
+    </div> 
+
+    <!--item photo-->
+    <div id="pictureframe">
+      <div id="solopicture">
+        <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+      </div>
+    </div>
+
+    <div id="button-frame">
+
+      <!--Home made like button-->
+      <div id="home-made-button">
+        <span>
+          {% if fav_status is even %}
+          <a href= "/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}" class="favlink op">
+            <i class="icon-heart"></i>
+          </a>
+          {% else %}
+          <a href= "/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}" class="unfavlink op">
+            <i class="icon-stop"></i> 
+          </a>
+          {% endif %}
+
+
+
+        </span> 
+
+
+        <!-- need to link this icon-heart to the favourite action and once favourite, need to add js when click change to icon-heart icon-white-->
+
+
       </div>
 
-      <div style="text-align: center">
-        <a class="btn" href="/bazaar"> Bazaar </a>
-        <a class="btn" href="/profile"> Profile </a>
-        <a class="btn" href="/favorite"> Favorites </a>
-        <a class="btn" href="/new"> Sell </a>
-        <a class="btn" href={{ logout }}> Log out </a>
-      </div> 
-
-      <!--item photo-->
-      <div id="pictureframe">
-        <div id="solopicture">
-          <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-        </div>
-      </div>
-
-      <div id="button-frame">
-
-        <!--Home made like button-->
-        <div id="home-made-button">
-          <span>
-            {% if fav_status is even %}
-              <a href= "/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-                <i class="icon-heart"></i>
-              </a>
-            {% else %}
-              <a href= "/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-                <i class="icon-heart icon-white"></i> 
-              </a>
-            {% endif %}
-
-           
-
-          </span> 
-          
-
-          <!-- need to link this icon-heart to the favourite action and once favourite, need to add js when click change to icon-heart icon-white-->
-
-
-        </div>
-
-        <!--item name-->
-        <div id="item-name">
-          <p>{{ item.name }}
+      <!--item name-->
+      <div id="item-name">
+        <p>{{ item.name }}
         </div>
         <div class="clear"></div>
       </div>
@@ -144,23 +143,41 @@
         <!--descriptions-->
         <div id="description-field">
           <p class="item-description">Owner: {{ item.parent().username }} <br>
-          Price:{{ item.price }}<br>
-          Condition: {{ item.condition }}<br> 
-          Preferred location: {{ item.location }}<br>
-          Contact details: {{item.parent().contact }} <br>
+            Price:{{ item.price }}<br>
+            Condition: {{ item.condition }}<br> 
+            Preferred location: {{ item.location }}<br>
+            Contact details: {{item.parent().contact }} <br>
           </p>
         </div>
-      </div>
+     </div>
 
-<!--
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>  
--->
-    <script type="text/javascript" scr="bootstrap.min.js"></script> 
-<!--
-    <script>
+
+
+     <script src="../scripts/jquery-1.9.1.min.js"></script>
+     <script type="text/javascript" scr="bootstrap.min.js"></script> 
+     <script>
       $(document).ready(function() {
+
+        $("a.op").click(function() {
+          $click = $(this);
+
+          $.ajax({
+            url: $(this).attr("href"),
+          }).done(function() {
+
+            if ($click.hasClass("favlink")) {
+              $click.removeClass("favlink").addClass("unfavlink").attr("href","/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}");
+              $(".icon-heart").removeClass("icon-heart").addClass("icon-stop");
+            }
+            else {
+              $click.removeClass("unfavlink").addClass("favlink").attr("href","/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}");
+              $(".icon-stop").removeClass("icon-stop").addClass("icon-heart");
+            }
+          });
+          return false;
+        })
       })
     </script>
--->
+
   </body>
-</html>
+  </html>
