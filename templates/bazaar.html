@@ -8,8 +8,8 @@
 
     <style type="text/css">
       body{
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding: 0px;
+        margin: 0px;
         background-color: #FFFF99;
       }
       .marketplacebanner2 {
@@ -36,22 +36,56 @@
         float: left;
         background-color: #FFFFCC;
       }
+      #navigation{
+        position: fixed;
+        top:0;
+        width: 100%;
+        color: #ffffff;
+        height: 35px;
+        text-align: center;
+        padding-top: 5px;
+        /* Adds shadow to the bottom of the bar */
+        -webkit-box-shadow: 0px 0px 8px 0px #000000;
+        -moz-box-shadow: 0px 0px 8px 0px #000000;
+        box-shadow: 0px 0px 8px 0px #000000;
+        /* Adds the transparent background */
+        background-color: rgba(1, 1, 1, 0.8);
+        color: rgba(1, 1, 1, 0.8);        
+      }
+      
+      #navigation a {
+        font-size: 14px;
+        padding-left: 15px;
+        padding-right: 15px;
+        color: white;
+        text-decoration: none;
+      }
+
+      #navigation a:hover {
+        color: grey;
+      } 
+
     </style>  
   </head>
   <body>
     <div class="container">
 
-      <!--marketplace banner photo -->
-      <div class="marketplacebanner2">
-        <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
-      </div>
-      <div style="text-align: center">
+      <!--navigation bar -->
+      <div id="navigation">
         <a class="btn" href="/bazaar"> Bazaar </a>
         <a class="btn" href="/profile"> Profile </a>
         <a class="btn" href="/favorite"> Favorites </a>
         <a class="btn" href="/new"> Sell </a>
         <a class="btn" href={{ logout }}> Log out </a>
-      </div> 
+      </div>
+
+      <!--marketplace banner photo -->
+      <div class="marketplacebanner2">
+        <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
+      </div>
+      
+
+
       <!--Gallery displaying categories-->
       <div class="gallery">
         
