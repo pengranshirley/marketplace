@@ -8,7 +8,6 @@
   <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
   <style type="text/css">
     body{
-      padding-top: 40px;
       padding-bottom: 40px;
       background-color: #FFFF99;
     }
@@ -35,6 +34,7 @@
       border: none;
     }
     #pictureframe{
+      padding-top: 125px;
       margin-top: 20px;
       margin-left: auto;
       margin-right: auto;
@@ -80,23 +80,50 @@
       text-align: ;
       float: right;
     }    
+    #navigation{
+      position: fixed;
+      width: 100%;
+      color: #ffffff;
+      height: 125px;
+      text-align: center;
+      padding-top: 5px;
+
+      /* Adds shadow to the bottom of the bar */
+      -webkit-box-shadow: 0px 0px 8px 0px #000000;
+      -moz-box-shadow: 0px 0px 8px 0px #000000;
+      box-shadow: 0px 0px 8px 0px #000000;
+      /* Adds the transparent background */
+      background-color: rgba(255, 255, 255, 0.68);
+      color: rgba(255, 255, 255, 0.68);        
+    }
+    #navigation a {
+      font-size: 14px;
+      color: navy blue;
+      text-decoration: none;
+    }
+    #navigation a:hover {
+      color: grey;
+    }   
   </style>          
 </head>
 <body>
-  <div class="container">
+  <!--navigation bar -->
+  <div id="navigation">
+  
     <!--marketplace banner photo -->
     <div class="marketplacebanner2">
-      <img src="../images/Marketplace_smaller_logo_item.png"/>
+      <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
     </div>
 
-    <div style="text-align: center">
-      <a class="btn" href="/bazaar"> Bazaar </a>
-      <a class="btn" href="/profile"> Profile </a>
-      <a class="btn" href="/favorite"> Favorites </a>
-      <a class="btn" href="/new"> Sell </a>
-      <a class="btn" href={{ logout }}> Log out </a>
-    </div> 
+    <!--buttons-->
+    <a href="/bazaar"> Bazaar </a>
+    <a href="/profile"> Profile </a>
+    <a href="/favorite"> Favorites </a>
+    <a href="/new"> Sell </a>
+    <a href={{ logout }}> Log out </a>
 
+  </div>    
+  <div class="container">
     <!--item photo-->
     <div id="pictureframe">
       <div id="solopicture">

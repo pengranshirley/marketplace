@@ -7,9 +7,11 @@
 	 	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	 	<style type="text/css">
 	      body{
-	        padding-top: 40px;
 	        padding-bottom: 40px;
 	        background-color: #FFFF99;
+	      }
+	      .container{
+	      	padding-top: 90px;
 	      }
 	      .marketplacebannersmall {
 	        width: 345px;
@@ -25,15 +27,50 @@
 	      	border-width: 0.5px;
 	      	border-color: #cccccc;
 	      }
+		  #navigation{
+		    position: fixed;
+		    width: 100%;
+		    color: #ffffff;
+		    height: 125px;
+		    text-align: center;
+		    padding-top: 5px;
+
+		    /* Adds shadow to the bottom of the bar */
+		    -webkit-box-shadow: 0px 0px 8px 0px #000000;
+		    -moz-box-shadow: 0px 0px 8px 0px #000000;
+		    box-shadow: 0px 0px 8px 0px #000000;
+		    /* Adds the transparent background */
+		    background-color: rgba(255, 255, 255, 0.68);
+		    color: rgba(255, 255, 255, 0.68);        
+		  }
+		  #navigation a {
+		    font-size: 14px;
+		    color: navy blue;
+		    text-decoration: none;
+		  }
+		  #navigation a:hover {
+		    color: grey;
+		  }    	      
 	    </style>
 	</head>
-	 <body>    
-	 	<div class="container">
-	      	<!--marketplace banner photo -->
-	      	<div class="marketplacebannersmall">
-	        	<img src="../images/Marketplace_smaller_logo_new_profile.png"/>
-	 	 	</div>
+	 <body>   
+	  <!--navigation bar -->
+	  <div id="navigation">
+	  
+	    <!--marketplace banner photo -->
+	    <div class="marketplacebanner2">
+	      <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
+	    </div>
 
+	    <!--buttons-->
+	    <a href="/bazaar"> Bazaar </a>
+	    <a href="/profile"> Profile </a>
+	    <a href="/favorite"> Favorites </a>
+	    <a href="/new"> Sell </a>
+	    <a href={{ logout }}> Log out </a>
+
+	  </div>    	
+	 	<div class="container">
 	 	 	<div class="information">
 	 	 		<form class="form-horizontal" action="/register" method="post">  
 			 		<div class="control-group">
