@@ -8,6 +8,7 @@ import datetime
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.api import images
+from PIL import Image
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -157,12 +158,11 @@ class AddItem(webapp2.RequestHandler):
         item.condition = self.request.get("item_condition")
         item.name = self.request.get("item_name")
         item.location = self.request.get("item_location")
-        item.image_link = self.request.get('image_url')
         item.price = self.request.get('item_price')
         # didn't check whether it's indeed an image
         picture = self.request.get('img')
         if picture:
-          item.img = db.Blob(images.resize(picture, 360, 400))
+               item.img = db.Blob(images.resize(picture, 480, 360))
         item.put()
         fav = 0
         self.redirect("/viewProduct?ID="+str(item.key().id())+"&user="+user.email())
@@ -274,35 +274,37 @@ class ViewImage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'image/jpeg'
         self.response.out.write(img)
       else:
-        self.redirect("http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image")
+        self.redirect("http://www.placehold.it/360x240/EFEFEF/AAAAAA&text=no+image")
 
 
 class DisplayByC(webapp2.RequestHandler):
   def get(self, name):
         category = self.request.get("c")
         page = self.request.get("p") 
-        start_no = int((int(page)-1)*9)
+        start_no = int((int(page)-1)*4)
         query = db.GqlQuery("SELECT * "
                             "FROM Items "
                             "WHERE sold = False AND category = :1 "
                             "ORDER BY date DESC",
                             category)
     
-        query_2 = query.fetch(9, int(start_no))
-
-        template_values = {
-          'user_mail': users.get_current_user().email(),
-          'logout': users.create_logout_url(self.request.host_url),
-          'category': category,
-          'page': page,
-          'items': query_2,
-        }
-        template = jinja_environment.get_template('category.html')
-        self.response.out.write(template.render(template_values)) 
-    
-        #Assume page no is always valid
-        #Suppose one page display 9 products
-        #Return all 9 items
+        query_2 = query.fetch(4, int(start_no))
+        if query_2:
+          template_values = {
+            'user_mail': users.get_current_user().email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            'category': category,
+            'page': page,
+            'items': query_2,
+          }
+          if start_no == 0:
+            template = jinja_environment.get_template('category.html')
+          else:
+            template = jinja_environment.get_template('category_append.html')
+          self.response.out.write(template.render(template_values)) 
+          #Assume page no is always valid
+          #Suppose one page display 9 products
+          #Return all 9 items
 
 class DisplayProduct(webapp2.RequestHandler):
   def get(self, name):

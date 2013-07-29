@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Marketplace - Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <!--navigation bar -->
+  <div class="container">
+    <!--Gallery displaying categories-->
+    <div id="gallery">
+
+      <div id="content" class="gallery clearfix">
+
+
+        {% for item in items %}
+        <div class="product">
+          <div class="picture">
+            <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+              <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div id="postswrapper">
+          <div class="item">content</div>
+          ...
+          <div id="loadmoreajaxloader" style="display:none;"><center><img src="../images/ajax-loader.gif" /></center></div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../scripts/jquery-1.9.1.min.js"></script>
+  <script src="../scripts/jquery.masonry.min.js"></script>
+
+  <script>
+   $(document).ready(function() {
+
+    var $container = $('#content');
+
+    $container.masonry({
+      itemSelector: '.product'
+    }).imagesLoaded(function() {
+     $container.masonry('reload');
+   });
+
+
+  });
+
+ </script>
+
+
+ <script type="text/javascript">
+$(window).scroll(function()
+{
+    if($(window).scrollTop() == $(document).height() - $(window).height())
+    {
+        $('div#loadmoreajaxloader').show();
+        $.ajax({
+        url: "loadmore.php",
+        success: function(html)
+        {
+            if(html)
+            {
+                $("#postswrapper").append(html);
+                $('div#loadmoreajaxloader').hide();
+            }else
+            {
+                $('div#loadmoreajaxloader').html('<center>No more posts to show.</center>');
+            }
+        }
+        });
+    }
+});
+</script>
+
+
+</body>
+</html>
