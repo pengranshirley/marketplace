@@ -15,6 +15,7 @@
       width: 345px;
       margin-left: auto;
       margin-right: auto;
+      padding-bottom: 5px;      
     }
     /* Contain floats: h5bp.com/q */
     .clearfix:before, .clearfix:after { 
@@ -27,6 +28,10 @@
     .clearfix { 
       *zoom: 1; 
     }
+    .product{
+      padding-left: 5px;
+      padding-top: 5px;
+    }
 
     #gallery{
       padding-top: 125px;
@@ -36,13 +41,11 @@
 
     #content {
       width: 1100px;
+      padding-bottom: 5px;
       margin: 0 auto;
-      padding-top: 5px;
       background-color: #FFFFCC;
 
     }   
-
-
 
     /*   
     .picture{
@@ -143,23 +146,22 @@
   <script src="../scripts/jquery.masonry.min.js"></script>
 
   <script>
-  var next_page = 2;
+    var next_page = 2;
 
-   $(document).ready(function() {
+     $(document).ready(function() {
 
-    var $container = $('#content');
+      var $container = $('#content');
 
-    $container.masonry({
-      itemSelector: '.product'
-    }).imagesLoaded(function() {
-     $container.masonry('reload');
-   });
+      $container.masonry({
+        itemSelector: '.product'
+      }).imagesLoaded(function() {
+       $container.masonry('reload');
+     });
 
+    });
 
-  });
-
-   $(window).scroll(function()
-   {
+    $(window).scroll(function()
+    {
         if($(window).scrollTop() == $(document).height() - $(window).height())
         {
               var next_url = "viewCategory?c={{ category }}&p="+next_page;
@@ -180,8 +182,8 @@
                 }
               });
         }
-  });
- </script>
+    });
+  </script>
 
 
 </body>

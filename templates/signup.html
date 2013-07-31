@@ -13,10 +13,11 @@
 	      .container{
 	      	padding-top: 90px;
 	      }
-	      .marketplacebannersmall {
+	      .marketplacebanner2 {
 	        width: 345px;
 	        margin-left: auto;
 	        margin-right: auto;
+	        padding-bottom: 5px;  
 	      }
 	      .information{
 	      	margin: 50px auto;
@@ -86,20 +87,20 @@
 			 				Contact Number:
 			 			</label>
 			 			<div class="controls">
-			 				<input class = "span3" type="text" name="contact-number" placeholder="Your mobile number">
+			 				<input class = "span3" type="text" required name="contact-number" placeholder="Your mobile number">
 			 			</div>
 			 		</div>
 			 		<div class="control-group">
 			 			<label class="control-label" for="user-description">
-			 				About yourself:
+			 				Describe yourself:
 			 			</label>
 			 			<div class="controls">
-			 				<textarea class="input-block-level" name="user_description" rows="3" > </textarea>
+			 				<textarea class="input-block-level" name="user_description" rows="3"></textarea>
 			 			</div>
 			 		</div>
 			 		<div class="form-actions">
-					  	<button type="submit" class="btn btn-small btn-primary">Save changes</button>
-					  	<a href="{{ logout }}" class="btn btn-warning btn-small">Cancel</a>
+					  	<button type="submit" class="btn btn-success">Done!</button>
+					  	<a href="{{ logout }}" class="btn btn-danger">Cancel</a>
 					</div>
 			 	</form>	
 		 	</div>

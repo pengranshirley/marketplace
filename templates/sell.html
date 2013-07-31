@@ -21,6 +21,7 @@
  			width: 345px;
  			margin-left: auto;
  			margin-right: auto;
+ 			padding-bottom: 5px;  
  		}
  		.information{
  			margin: 50px auto;
@@ -102,7 +103,7 @@
 				<div class="control-group">
 					<label class="control-label" for="item_name">Item name</label>
 					<div class="controls">
-						<input type="text" id="input_name" placeholder="Name?" type="text" name="item_name" >
+						<input type="text" required id="input_name" placeholder="What's it called?" type="text" name="item_name" >
 					</div>
 				</div>
 
@@ -130,7 +131,7 @@
 				<div class="control-group">
 					<label class="control-label" for="item_price">Item price</label>
 					<div class="controls">
-						<input type="text" id="item_price" placeholder="What's the price?" type="text"name="item_price" >
+						<input type="text" required id="item_price" placeholder="Name your price" type="text"name="item_price" >
 					</div>
 				</div>
 
@@ -151,37 +152,29 @@
 				<div class="control-group">
 					<label class="control-label" for="desc">Brief discription</label>
 					<div class="controls">	
-						<textarea rows="3" id="desc" name="desc" rows="3"> </textarea>
+						<textarea rows="3" id="desc" name="desc" rows="2"> </textarea>
 					</div>
 				</div>
-<!--
- 				<div class="control-group">
- 					<label class="control-label" for="img">Picture</label>
- 					<div class="controls">	
- 						<input type="file" name="img"/>
- 					</div>
- 				</div>
- 			-->
- 			<div class="control-group">
- 				<label class="control-label" for="img">Picture</label>
- 				<div class="controls">	
 
- 					<div class="fileupload fileupload-new" data-provides="fileupload">
- 						<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
- 						<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
- 						<div>
- 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="img"/></span>
- 							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
- 						</div>
- 					</div>
- 				</div></div>
+	 			<div class="control-group">
+	 				<label class="control-label" for="img">Picture</label>
+	 				<div class="controls">	
 
+	 					<div class="fileupload fileupload-new" data-provides="fileupload">
+	 						<div class="fileupload-new thumbnail" style="width: 210px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
+	 						<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 210px; max-height: 150px; line-height: 20px;"></div>
+	 						<div>
+	 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="img"/></span>
+	 							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+	 						</div>
+	 					</div>
+	 				</div>
+	 			</div>
 
-
- 				<div class="form-actions">
- 					<button type="submit" class="btn btn-primary">Save changes</button>
- 					<a class="btn" href="/bazaar">Cancel</a>
- 				</div>
+	 			<div class="form-actions">
+	 				<button type="submit" class="btn btn-success">Sell me!</button>
+	 				<a class="btn btn-danger" href="/bazaar">Cancel</a>
+	 			</div>
 
  			</form>	
  		</div>
@@ -189,13 +182,7 @@
 
 
  	<script src="../scripts/jquery-1.9.1.min.js"></script>
- 	<!--
- 	<script src="../scripts/jquery.validate.js"></script>
- 	-->
  	<script src="../scripts/bootstrap-fileupload.min.js"></script>
-
-
-
  	<script>
  		$(document).ready(function() {
  			$("#loading").hide();

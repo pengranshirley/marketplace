@@ -14,50 +14,35 @@
     width: 345px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 5px;  
   }
   .profile-description{
     width: 390px;
-    float: right;
-    margin-top: 5px;
-    margin-right: 105px;
   }
   p.profile-description{
     width: auto;
-    margin-left: 10px;
   }
   .img-profile {
+    float: right;
     width: 140px;
     padding: 4px;
     background-color: #fff;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }    
   #profile-bar{
     width: 650px;
-    margin: 10px auto;
-    padding: 125px;
-  }
-  #home-made-logout-button{
-    width: 100px;
-    height: 20px;
-    margin-top: -95px;
-    text-align: right;
-    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 140px;
   }
   #home-made-edit-profile-button{
     width: 100px;
     height: 20px;
-    margin-top: -75px;
-    text-align: right;
-    float: right;
   }    
   #intermediate-bar{
     width: 700px;
-    margin: 10px auto;
-    padding: 5px;
+    margin: auto;
   }
 
   .gallery{
@@ -122,92 +107,75 @@
   <div class="container">
     <!--Top bar of profile page-->
     <div id="profile-bar">
-
-      	<!--Profile picture-->
-  		  <img src="../images/example1.jpg" class="img-profile"/>
-      
+    	<!--Profile picture-->
+		  <img src="../images/example1.jpg" class="img-profile"/>
+      <!--Edit profile button-->
+      <div id="home-made-edit-profile-button">
+        <p>Edit Profile <i class="icon-wrench"></i></p> 
+      </div>
 
       <!--Profile details field-->
       <div class="profile-description">
-       <p>Name: {{ user.username }}<br>
+        <p><strong>{{ user.username }}</strong><br>
           About yourself: {{ user.description }}
-      </p>
+        </p>
+      </div>
+
     </div>
 
-    <!--logout button-->
-    <div id="home-made-logout-button">
-      <p> 
-        <a href= {{ logout }}>Logout 
-          <i class="icon-eject"></i>
-        </a>
-      </p> 
-      <!-- need to add logout link. need to add js when click change to icon-heart icon-white and mouse over?-->
-    </div>   
-
-
-    <!--Edit profile button-->
-    <div id="home-made-edit-profile-button">
-      <p>Edit Profile <i class="icon-wrench"></i></p> 
-      <!-- need to add logout link. need to add js when click change to icon-heart icon-white and mouse over?-->
-    </div>  
-  </div>
-
-  <!--Items for sale bar-->
-  <div id="intermediate-bar">
-
-
-    <div style="width: 700px; height:5px; background-color: grey; float: left"></div>
-
-      <div id="content" class="gallery clearfix">
-
-    {% for item in items_onsale %}
-    <div class="picture">
-      <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-        <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
-      </a>
-      <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">I have sold it!
-      </a>
+    <!--Items for sale bar-->
+    <div id="intermediate-bar">
+      
+      <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
+      <h3>
+        Items for sale
+      </h3>
+      <!-- division -->
+      <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
+        
+        <!--gallery-->    
+        <div id="content" class="gallery clearfix">
+          {% for item in items_onsale %}
+          <div class="picture">
+            <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+              <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
+            </a>
+            <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"> 
+              <p style="text-align:center"> Sold <p>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      <!-- division -->
+      <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
     </div>
-    {% endfor %}
-</div>
-    <div style="width: 700px; height:5px; background-color: grey; float: left"></div>
-  </div>
 
+    <!--Items sold bar-->
+    <div id="intermediate-bar">
+      <h3>
+        Items sold
+      </h3>
+      <!-- division -->
+      <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
+       
+        <!--gallery-->    
+        <div id="content" class="gallery clearfix">
+          {% for item in items_sold %}
+          <div class="picture">
+            <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+              <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
+            </a>
+            <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+              <p style="text-align:center"> It's gone! <p>
+            </a>
+          </div>
+          {% endfor %}
+      </div>
+      <!-- temp-->
+      <br>
 
-
-
-  <!--Sale items gallery-->
-
-
-  <!--Items sold bar-->
-  <br><br>
-  <div id="intermediate-bar">
-    <h3>
-      Items sold
-    </h3>
-    <div style="width: 700px; height:5px; background-color: grey; float: left"></div>
-
-
-    {% for item in items_sold %}
-    <div class="picture">
-      <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-        <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
-      </a>
-      <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">Sell it!
-      </a>
+      <!-- division -->
+      <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
     </div>
-    {% endfor %}
-
-
-
-
-
-    <div style="width: 700px; height:5px; background-color: grey; float: left"></div>
   </div>
-
-  <!--Sold items gallery-->
-
-
-</div>
-</div>
 </body>
