@@ -34,19 +34,32 @@
     }
 
     #gallery{
-      padding-top: 125px;
       width: 1100px;
-      margin: 20px auto;
+      margin: 0px auto;
     }
-
+    #link-bar{
+      padding-top: 115px;
+      padding-left: 5px;
+      width: 1100px;
+      height: 0px;
+      margin: 25px auto;
+    }
+    #link-bar p{
+      padding-left: 5px;
+      color: navy blue;
+    }
+    #link-bar a{
+      color: navy blue;  
+    }
+    #link-bar a:hover{
+      color: black;  
+    }
     #content {
       width: 1100px;
       padding-bottom: 5px;
       margin: 0 auto;
       background-color: #FFFFCC;
     }   
-
-
     .caption {
       position: absolute;
       right: 0px;
@@ -59,7 +72,6 @@
     .caption p, .caption h4{
       color: rgb(255, 255, 255);
     }
-
     #navigation{
       position: fixed;
       width: 100%;
@@ -86,8 +98,6 @@
       color: grey;
     } 
 
-
-
   </style>
 </head>
 <body>
@@ -100,42 +110,48 @@
     </div>
 
     <!--buttons-->
-    <a href="/bazaar"> Bazaar </a>
-    <a href="/profile"> Profile </a>
-    <a href="/favorite"> Favorites </a>
-    <a href="/new"> Sell </a>
+    <a href="/bazaar"> Bazaar </a> | 
+    <a href="/profile"> Profile </a> |
+    <a href="/favorite"> Favorites </a> |
+    <a href="/new"> Sell </a> |
     <a href={{ logout }}> Log out </a>
 
   </div>    
 
-
-
   <div class="container">
+
+    <!-- link bar -->
+    <div id="link-bar">
+      <p><a href="/bazaar"> Bazaar </a> > <a href="viewCategory?c=clothes&p=1"> {{category}} </a></p>
+    </div>
+
     <!--Gallery displaying categories-->
     <div id="gallery">
-
+     
       <div id="content" class="gallery clearfix">
-
-
+        <!--displaying one item-->
         {% for item in items %}
         <div class="product">
+          <!--photo-->
           <div class="picture">
             <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
               <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
             </a>
           </div>
-          <div class="caption"><h4>{{ item.name }}</h4><p>{{ item.description }}</p></div>
-
+          <!--caption-->
+          <div class="caption">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+          </div>
         </div>
         {% endfor %}
-
       </div>
 
       <div id="postswrapper">
-        <div id="loadmoreajaxloader" style="display:none;"><center><img src="../images/ajax-loader.gif" /></center></div>
+        <div id="loadmoreajaxloader" style="display:none;">
+          <center><img src="../images/ajax-loader.gif" /></center>
+        </div>
       </div>
-
-
 
     </div>
   </div>
@@ -168,9 +184,6 @@
 
 
     });
-
-
-
 
     $(window).scroll(function()
     {

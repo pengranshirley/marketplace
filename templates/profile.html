@@ -43,16 +43,20 @@
       width: 100px;
       height: 20px;
     }    
+    #home-made-edit-profile-button a{
+      color: black;
+    }    
     #intermediate-bar{
       width: 700px;
       margin: auto;
     }
-
     .gallery{
       width: 650px;
       margin: 20px auto;
     }
-
+    .well{
+      background-color: #FFFFCC;
+    }
     .picture{
       width: 150px;
       display: block;
@@ -100,10 +104,10 @@
     </div>
 
     <!--buttons-->
-    <a href="/bazaar"> Bazaar </a>
-    <a href="/profile"> Profile </a>
-    <a href="/favorite"> Favorites </a>
-    <a href="/new"> Sell </a>
+    <a href="/bazaar"> Bazaar </a> |
+    <a href="/profile"> Profile </a> |
+    <a href="/favorite"> Favorites </a> |
+    <a href="/new"> Sell </a> |
     <a href={{ logout }}> Log out </a>
 
   </div>    
@@ -140,7 +144,7 @@
       {% if has_onsale is divisibleby 2 %}
       <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
       <div style="margin-bottom:50px " class="well">
-        <h4>Right now, you have no items on sale.</h4>
+        <h4>You have not placed anything on sale yet.</h4>
       </div>
       {% else %}
 
@@ -178,7 +182,7 @@
 
         {% if has_sold is divisibleby 2 %}
         <div class="well">
-          <h4>Right now, you have not sold any items.</h4>
+          <h4>You have not sold anything yet.</h4>
         </div>
         {% else %}
 

@@ -162,7 +162,6 @@ class UserProfile(webapp2.RequestHandler):
      else:
         self.redirect(self.request.host_url)
 
-
 class AddItem(webapp2.RequestHandler):
   def post(self):
     user = users.get_current_user()
@@ -227,7 +226,6 @@ class RemoveFavorite(webapp2.RequestHandler):
     else:
       self.redirect(self.request.host_url)
 
-
 class AddFavorite(webapp2.RequestHandler):
   def get(self, name):
     user = users.get_current_user()
@@ -270,10 +268,6 @@ class ViewFavorite(webapp2.RequestHandler):
 
     else:
       self.redirect(self.request.host_url)
-
-
-
-
 
 class ViewImage(webapp2.RequestHandler):
   def get(self, name):
