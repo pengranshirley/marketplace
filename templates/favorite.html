@@ -20,18 +20,6 @@
     .clearfix { 
       *zoom: 1; 
     }
-
-    #gallery{
-      padding-top: 125px;
-      width: 1100px;
-      margin: 20px auto;
-    }
-    #content {
-      width: 1100px;
-      margin: 0 auto;
-      padding-top: 5px;
-      background-color: #FFFFCC;
-    }      
     .picture{
       width: 360px;
       display: block;
@@ -43,12 +31,60 @@
       width: 360px;
       height: auto;
     }
- 
-    #error-message {
-      padding-top:150px;
-      width:50%;
-      margin-left:25%;
+    .jumbotron{
+      background-color: #FFFFCC;
     }
+    .jumbotron h3{
+      margin-top: 5px;
+    }
+    .marketplacebanner2 {
+      width: 345px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 5px;
+    }
+    #gallery{
+      padding-top: 135px;
+      width: 1100px;
+      margin: 10px auto;
+    }
+    #content {
+      width: 1100px;
+      margin: 0 auto;
+      padding-top: 5px;
+      background-color: #FFFFCC;
+    }      
+    #error-message {
+      width: 1100px;
+      margin-left:auto;
+      margin-right: auto;
+    }
+    #navigation{
+      margin-left: -9.25px;
+      position: fixed;
+      width: 100%;
+      color: #ffffff;
+      height: 130px;
+      text-align: center;
+      padding-top: 5px;
+
+      /* Adds shadow to the bottom of the bar */
+      -webkit-box-shadow: 0px 0px 8px 0px #000000;
+      -moz-box-shadow: 0px 0px 8px 0px #000000;
+      box-shadow: 0px 0px 8px 0px #000000;
+      /* Adds the transparent background */
+      background-color: rgba(255, 255, 255, 0.68);
+      color: rgba(255, 255, 255, 0.68);        
+    }
+    #navigation a { 
+      font-size: 14px;
+      color: navy blue;
+      text-decoration: none;
+    }
+    #navigation a:hover {
+      color: grey;
+    } 
+
   </style>
 </head>
 <body>
@@ -70,39 +106,33 @@
   </div>    
 
   <div class="container">
-
-
-    <!--Gallery displaying categories-->
-
+    
+  <!--Gallery displaying favourites-->
+  <div id="gallery">
     {% if has_favorite is divisibleby 2 %}
-    <div id="gallery">
-      <div id="content" class="gallery clearfix">
+    <div id="content" class="gallery clearfix">
 
-        {% for item in items %}
-        <div class="picture">
-          <a href="/viewProduct?ID={{ item.productID }}&user={{ item.parentID }}">
-            <img src="/img?ID={{ item.productID }}&user={{ item.parentID }}" alt=""/>
-          </a>
-        </div>
-        {% endfor %}
+      {% for item in items %}
+      <div class="picture">
+        <a href="/viewProduct?ID={{ item.productID }}&user={{ item.parentID }}">
+          <img src="/img?ID={{ item.productID }}&user={{ item.parentID }}" alt=""/>
+        </a>
       </div>
-
+    {% endfor %}
     </div>
+  </div>
 
 
     {% else %} 
     <div id="error-message">
       <div class="jumbotron">
-        <h3>Ops!</h3>
-        <p>You have not marked any items as favorites!</p>
-        <br>
-        <p><a class="btn btn-primary pull-right" href="/bazaar">Continue to browse</a></p>
+        <h3>Ops...</h3>
+        <p>You have not listed any favorite items yet!
+        </p>
+        <p><a class="btn btn-primary btn-large" href="/bazaar">Find a item</a></p>
       </div>
     </div>
     {% endif %}
-
-
-
   </div>
 </body>
 </html>

@@ -32,21 +32,23 @@
       padding-left: 5px;
       padding-top: 5px;
     }
-
+    .hero-unit{
+      background-color: #FFFFCC;      
+    }
+    .hero-unit h3{
+      margin-top: -10px;      
+    }
     #gallery{
       padding-top: 125px;
       width: 1100px;
       margin: 20px auto;
     }
-
     #content {
       width: 1100px;
       padding-bottom: 5px;
       margin: 0 auto;
       background-color: #FFFFCC;
-
     }   
-
     #navigation{
       position: fixed;
       width: 100%;
@@ -72,8 +74,6 @@
     #navigation a:hover {
       color: grey;
     } 
-
-
   </style>
 </head>
 <body>
@@ -86,10 +86,10 @@
     </div>
 
     <!--buttons-->
-    <a href="/bazaar"> Bazaar </a>
-    <a href="/profile"> Profile </a>
-    <a href="/favorite"> Favorites </a>
-    <a href="/new"> Sell </a>
+    <a href="/bazaar"> Bazaar </a> |
+    <a href="/profile"> Profile </a> |
+    <a href="/favorite"> Favorites </a> |
+    <a href="/new"> Sell </a> |
     <a href={{ logout }}> Log out </a>
 
   </div>    
@@ -99,12 +99,11 @@
   <div class="container">
     <!--Gallery displaying categories-->
     <div id="gallery">
-
      <div class="hero-unit">
-      <h3>Ops</h3>
-      <p>There are no items on sale under {{ category -}}</p>
+      <h3>Ops!</h3>
+      <p>There aren't any items listed under {{ category }} yet!</p>
       <p>
-        <a class="btn btn-primary btn-large">
+        <a class="btn btn-primary btn-large" href="/bazaar">
           Browse more
         </a>
       </p>
