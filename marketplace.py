@@ -131,12 +131,29 @@ class UserProfile(webapp2.RequestHandler):
                                    "WHERE sold = True AND ANCESTOR IS :1 "
                                    "ORDER BY date DESC",
                                    parent_key)
+
+        query_1 = items_onsale.get();
+        query_2 = items_sold.get();
+
+        if query_1:
+          has_items_onsale = 1;
+        else:
+          has_items_onsale = 0;
+
+        if query_2:
+          has_items_sold = 1;
+        else:
+          has_items_sold = 0;
+
+
         
         template_values = {
             'user': person,
             'logout': users.create_logout_url(self.request.host_url),
             'items_onsale': items_onsale,
             "items_sold": items_sold,
+            "has_sold": has_items_sold,
+            "has_onsale": has_items_onsale,
             
         } 
         template = jinja_environment.get_template('profile.html')
@@ -166,17 +183,6 @@ class AddItem(webapp2.RequestHandler):
         item.put()
         fav = 0
         self.redirect("/viewProduct?ID="+str(item.key().id())+"&user="+user.email())
-        """
-        template_values = {
-              'user_mail': users.get_current_user().email(),
-              'logout': users.create_logout_url(self.request.host_url),
-              'item': item,
-              'fav': fav,
-              'owner': person,
-        } 
-        template = jinja_environment.get_template('product.html')
-        self.response.out.write(template.render(template_values))
-        """
     else:
         self.redirect(self.request.host_url)
 
@@ -247,11 +253,17 @@ class ViewFavorite(webapp2.RequestHandler):
                             "FROM Favorite "
                             "WHERE userID = :1",
                             user.email())
+        query_2 = query.get()
 
+        if query_2:
+          has = 0;
+        else:
+          has = 1;
         template_values = {
               'user_mail': users.get_current_user().email(),
               'logout': users.create_logout_url(self.request.host_url),
               'items': query,
+              'has_favorite': has,
         } 
         template = jinja_environment.get_template('favorite.html')
         self.response.out.write(template.render(template_values)) 
@@ -289,19 +301,30 @@ class DisplayByC(webapp2.RequestHandler):
                             category)
     
         query_2 = query.fetch(4, int(start_no))
+        page = int(page)
+
         if query_2:
           template_values = {
             'user_mail': users.get_current_user().email(),
             'logout': users.create_logout_url(self.request.host_url),
             'category': category,
-            'page': page,
             'items': query_2,
           }
-          if start_no == 0:
+          if page == 1:
             template = jinja_environment.get_template('category.html')
           else:
             template = jinja_environment.get_template('category_append.html')
           self.response.out.write(template.render(template_values)) 
+
+        elif page == 1:
+          template_values = {
+            'user_mail': users.get_current_user().email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            'category': category,
+          }
+          template = jinja_environment.get_template('category_empty.html')
+          self.response.out.write(template.render(template_values)) 
+
           #Assume page no is always valid
           #Suppose one page display 9 products
           #Return all 9 items

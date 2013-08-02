@@ -5,92 +5,95 @@
  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
  	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
   <style type="text/css">
-  body{
-    padding-bottom: 40px;
-    background-color: #FFFF99;
-  }
-  .marketplacebanner2 {
-    width: 345px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 5px;  
-  }
-  .profile-description{
-    width: 390px;
-  }
-  p.profile-description{
-    width: auto;
-  }
-  .img-profile {
-    float: right;
-    width: 140px;
-    padding: 4px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-  }    
-  #profile-bar{
-    width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 140px;
-  }
-  #home-made-edit-profile-button{
-    width: 100px;
-    height: 20px;
-  }    
-  #intermediate-bar{
-    width: 700px;
-    margin: auto;
-  }
+    body{
+      padding-bottom: 40px;
+      background-color: #FFFF99;
+    }
+    .marketplacebanner2 {
+      width: 345px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 5px;  
+    }
+    .profile-description{
+      width: 390px;
+    }
+    p.profile-description{
+      width: auto;
+    }
+    .img-profile {
+      float: right;
+      width: 140px;
+      padding: 4px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }    
+    #profile-bar{
+      width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 140px;
+    }
+    #home-made-edit-profile-button{
+      width: 100px;
+      height: 20px;
+    }    
+    #intermediate-bar{
+      width: 700px;
+      margin: auto;
+    }
 
-  .gallery{
-    width: 650px;
-    margin: 20px auto;
-  }
+    .gallery{
+      width: 650px;
+      margin: 20px auto;
+    }
 
-  .picture{
-    width: 150px;
-    display: block;
-    float: left;
-    margin-left: 5px;
-    margin-bottom: 5px;
-  }
-  .picture img{
-    width: 150px;
-    height: auto;
-  }
-  #navigation{
-    position: fixed;
-    width: 100%;
-    color: #ffffff;
-    height: 125px;
-    text-align: center;
-    padding-top: 5px;
+    .picture{
+      width: 150px;
+      display: block;
+      float: left;
+      margin-left: 5px;
+      margin-bottom: 5px;
+    }
+    .picture img{
+      width: 150px;
+      height: auto;
+    }
+    #navigation{
+      position: fixed;
+      width: 100%;
+      color: #ffffff;
+      height: 125px;
+      text-align: center;
+      padding-top: 5px;
 
-    /* Adds shadow to the bottom of the bar */
-    -webkit-box-shadow: 0px 0px 8px 0px #000000;
-    -moz-box-shadow: 0px 0px 8px 0px #000000;
-    box-shadow: 0px 0px 8px 0px #000000;
-    /* Adds the transparent background */
-    background-color: rgba(255, 255, 255, 0.68);
-    color: rgba(255, 255, 255, 0.68);        
-  }
-  #navigation a {
-    font-size: 14px;
-    color: navy blue;
-    text-decoration: none;
-  }
-  #navigation a:hover {
-    color: grey;
-  }   
+      /* Adds shadow to the bottom of the bar */
+      -webkit-box-shadow: 0px 0px 8px 0px #000000;
+      -moz-box-shadow: 0px 0px 8px 0px #000000;
+      box-shadow: 0px 0px 8px 0px #000000;
+      /* Adds the transparent background */
+      background-color: rgba(255, 255, 255, 0.68);
+      color: rgba(255, 255, 255, 0.68);        
+    }
+    #navigation a {
+      font-size: 14px;
+      color: navy blue;
+      text-decoration: none;
+    }
+    #navigation a:hover {
+      color: grey;
+    }   
   </style>          
 </head>
 <body>
   <!--navigation bar -->
   <div id="navigation">
-  
+
     <!--marketplace banner photo -->
     <div class="marketplacebanner2">
       <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
@@ -108,10 +111,10 @@
     <!--Top bar of profile page-->
     <div id="profile-bar">
     	<!--Profile picture-->
-		  <img src="../images/example1.jpg" class="img-profile"/>
+      <img src="../images/example1.jpg" class="img-profile"/>
       <!--Edit profile button-->
       <div id="home-made-edit-profile-button">
-        <p>Edit Profile <i class="icon-wrench"></i></p> 
+        <p><a href="#" id="edit_profile_link">Edit Profile <i class="icon-wrench"></i></a></p> 
       </div>
 
       <!--Profile details field-->
@@ -124,40 +127,61 @@
     </div>
 
     <!--Items for sale bar-->
+
+
+
     <div id="intermediate-bar">
-      
+
       <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
       <h3>
         Items for sale
       </h3>
+
+      {% if has_onsale is divisibleby 2 %}
+      <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
+      <div style="margin-bottom:50px " class="well">
+        <h4>Right now, you have no items on sale.</h4>
+      </div>
+      {% else %}
+
       <!-- division -->
       <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
-        
-        <!--gallery-->    
-        <div id="content" class="gallery clearfix">
-          {% for item in items_onsale %}
-          <div class="picture">
-            <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-              <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
-            </a>
-            <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"> 
-              <p style="text-align:center"> Sold <p>
+
+      <!--gallery-->    
+      <div id="content" class="gallery clearfix">
+        {% for item in items_onsale %}
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+            <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
+          </a>
+          <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"> 
+            <p style="text-align:center"> Sold <p>
             </a>
           </div>
           {% endfor %}
         </div>
-      <!-- division -->
-      <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
-    </div>
+        <!-- division -->
+        <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
+      </div>
+      {% endif %}
 
-    <!--Items sold bar-->
-    <div id="intermediate-bar">
-      <h3>
-        Items sold
-      </h3>
-      <!-- division -->
-      <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
-       
+      <!--Items sold bar-->
+
+
+
+      <div id="intermediate-bar">
+        <h3>
+          Items sold
+        </h3>
+        <!-- division -->
+        <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
+
+        {% if has_sold is divisibleby 2 %}
+        <div class="well">
+          <h4>Right now, you have not sold any items.</h4>
+        </div>
+        {% else %}
+
         <!--gallery-->    
         <div id="content" class="gallery clearfix">
           {% for item in items_sold %}
@@ -167,15 +191,90 @@
             </a>
             <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
               <p style="text-align:center"> It's gone! <p>
-            </a>
+              </a>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-      </div>
-      <!-- temp-->
-      <br>
+          <!-- temp-->
+          <br>
 
-      <!-- division -->
-      <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
-    </div>
-  </div>
-</body>
+          <!-- division -->
+          <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
+        </div>
+        {% endif %}
+      </div>
+
+
+      <!-- Edit profile modal -->
+      <div class="modal hide fade" id="edit_profile_modal">
+
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Edit profile</h4>
+        </div>
+
+        <div class="modal-body">
+
+          <form class="form-horizontal" action="/register" method="post" id="edit_profile_form">  
+            <fieldset>
+              <div class="control-group">
+                <label class="control-label" for="username">
+                  Username:
+                </label>
+                <div class="controls">
+                  <input class = "span3" type="text" required name="username" value="{{- user.username -}}">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="contact-number">
+                  Contact Number:
+                </label>
+                <div class="controls">
+                  <input class = "span3" type="text" name="contact-number" placeholder="Your mobile number" value="{{- user.contact -}}">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="user-description">
+                  About yourself:
+                </label>
+                <div class="controls">
+                  <textarea class="input-block-level" name="user_description" rows="3" >{{- user.description -}}</textarea>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form> 
+
+
+      </div> <!-- /.modal -->
+
+      <script src="../scripts/jquery-1.9.1.min.js"></script>
+      <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+      <script>
+        $(document).ready(function() {
+          $("#edit_profile_link").click(function() {
+            $("#edit_profile_modal").modal();
+          })
+
+          $("#edit_profile_form").submit(function() {
+           $.ajax({
+              type : 'POST',
+              url: $("#edit_profile_form").attr("action"),
+              data : $("#edit_profile_form").serialize(),
+              success: function() {
+                alert("success");
+                window.location.reload(true); // true if want to get from server
+              }
+            });
+            return false;
+          })
+        })
+      </script>
+    </body>

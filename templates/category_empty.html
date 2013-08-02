@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Marketplace - Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+  <style type="text/css">
+    body{
+      padding-bottom: 40px;
+      background-color: #FFFF99;
+    }
+    .marketplacebanner2 {
+      width: 345px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 5px;      
+    }
+    /* Contain floats: h5bp.com/q */
+    .clearfix:before, .clearfix:after { 
+      content: ""; 
+      display: table; 
+    }
+    .clearfix:after { 
+      clear: both; 
+    }
+    .clearfix { 
+      *zoom: 1; 
+    }
+    .product{
+      padding-left: 5px;
+      padding-top: 5px;
+    }
+
+    #gallery{
+      padding-top: 125px;
+      width: 1100px;
+      margin: 20px auto;
+    }
+
+    #content {
+      width: 1100px;
+      padding-bottom: 5px;
+      margin: 0 auto;
+      background-color: #FFFFCC;
+
+    }   
+
+    #navigation{
+      position: fixed;
+      width: 100%;
+      color: #ffffff;
+      height: 125px;
+      text-align: center;
+      padding-top: 5px;
+      z-index:1;
+
+      /* Adds shadow to the bottom of the bar */
+      -webkit-box-shadow: 0px 0px 8px 0px #000000;
+      -moz-box-shadow: 0px 0px 8px 0px #000000;
+      box-shadow: 0px 0px 8px 0px #000000;
+      /* Adds the transparent background */
+      background-color: rgba(255, 255, 255, 0.68);
+      color: rgba(255, 255, 255, 0.68);        
+    }
+    #navigation a {
+      font-size: 14px;
+      color: navy blue;
+      text-decoration: none;
+    }
+    #navigation a:hover {
+      color: grey;
+    } 
+
+
+  </style>
+</head>
+<body>
+  <!--navigation bar -->
+  <div id="navigation">
+
+    <!--marketplace banner photo -->
+    <div class="marketplacebanner2">
+      <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
+    </div>
+
+    <!--buttons-->
+    <a href="/bazaar"> Bazaar </a>
+    <a href="/profile"> Profile </a>
+    <a href="/favorite"> Favorites </a>
+    <a href="/new"> Sell </a>
+    <a href={{ logout }}> Log out </a>
+
+  </div>    
+
+
+
+  <div class="container">
+    <!--Gallery displaying categories-->
+    <div id="gallery">
+
+     <div class="hero-unit">
+      <h3>Ops</h3>
+      <p>There are no items on sale under {{ category -}}</p>
+      <p>
+        <a class="btn btn-primary btn-large">
+          Browse more
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

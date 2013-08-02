@@ -1,0 +1,38 @@
+    body{
+      padding-bottom: 40px;
+      background-color: #FFFF99;
+    }
+    #navigation{
+      position: fixed;
+      width: 100%;
+      color: #ffffff;
+      height: 125px;
+      text-align: center;
+      padding-top: 5px;
+
+      /* Adds shadow to the bottom of the bar */
+      -webkit-box-shadow: 0px 0px 8px 0px #000000;
+      -moz-box-shadow: 0px 0px 8px 0px #000000;
+      box-shadow: 0px 0px 8px 0px #000000;
+      /* Adds the transparent background */
+      background-color: rgba(255, 255, 255, 0.68);
+      color: rgba(255, 255, 255, 0.68);        
+    }
+    #navigation a {
+      font-size: 14px;
+      color: navy blue;
+      text-decoration: none;
+    }
+    #navigation a:hover {
+      color: grey;
+    }  
+
+
+
+    .marketplacebanner2 {
+      width: 345px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 5px;
+    }
+
