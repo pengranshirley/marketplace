@@ -178,7 +178,7 @@ class AddItem(webapp2.RequestHandler):
         # didn't check whether it's indeed an image
         picture = self.request.get('img')
         if picture:
-               item.img = db.Blob(images.resize(picture, 360))
+               item.img = db.Blob(images.resize(picture, 720))
         item.put()
         fav = 0
         self.redirect("/viewProduct?ID="+str(item.key().id())+"&user="+user.email())

@@ -75,6 +75,7 @@
       height: 125px;
       text-align: center;
       padding-top: 5px;
+      z-index:1;
 
       /* Adds shadow to the bottom of the bar */
       -webkit-box-shadow: 0px 0px 8px 0px #000000;
@@ -158,9 +159,7 @@
           <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
             <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
           </a>
-          <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"> 
-            <p style="text-align:center"> Sold <p>
-            </a>
+
           </div>
           {% endfor %}
         </div>
@@ -187,15 +186,13 @@
         {% else %}
 
         <!--gallery-->    
-        <div id="content" class="gallery clearfix">
+        <div id="content2" class="gallery clearfix">
           {% for item in items_sold %}
           <div class="picture">
             <a href="/viewProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
               <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
             </a>
-            <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}">
-              <p style="text-align:center"> It's gone! <p>
-              </a>
+
             </div>
             {% endfor %}
           </div>
@@ -260,25 +257,44 @@
 
       <script src="../scripts/jquery-1.9.1.min.js"></script>
       <script src="../bootstrap/js/bootstrap.min.js"></script>
+      <script src="../scripts/jquery.masonry.min.js"></script>
 
       <script>
+
+
+        function mansory_init(p) {
+          var $container = $(p);
+
+          $container.masonry({
+            itemSelector: '.picture'
+          }).imagesLoaded(function() {
+           $container.masonry('reload');
+         });
+
+        }
         $(document).ready(function() {
+
+
+          mansory_init("#content");
+          mansory_init("#content2");
+
+
           $("#edit_profile_link").click(function() {
             $("#edit_profile_modal").modal();
           })
 
           $("#edit_profile_form").submit(function() {
            $.ajax({
-              type : 'POST',
-              url: $("#edit_profile_form").attr("action"),
-              data : $("#edit_profile_form").serialize(),
-              success: function() {
-                alert("success");
+            type : 'POST',
+            url: $("#edit_profile_form").attr("action"),
+            data : $("#edit_profile_form").serialize(),
+            success: function() {
+              alert("success");
                 window.location.reload(true); // true if want to get from server
               }
             });
-            return false;
-          })
+           return false;
+         })
         })
       </script>
     </body>

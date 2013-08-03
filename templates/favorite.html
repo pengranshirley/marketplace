@@ -67,6 +67,7 @@
       height: 130px;
       text-align: center;
       padding-top: 5px;
+      z-index:1;
 
       /* Adds shadow to the bottom of the bar */
       -webkit-box-shadow: 0px 0px 8px 0px #000000;
@@ -106,21 +107,21 @@
   </div>    
 
   <div class="container">
-    
-  <!--Gallery displaying favourites-->
-  <div id="gallery">
-    {% if has_favorite is divisibleby 2 %}
-    <div id="content" class="gallery clearfix">
 
-      {% for item in items %}
-      <div class="picture">
-        <a href="/viewProduct?ID={{ item.productID }}&user={{ item.parentID }}">
-          <img src="/img?ID={{ item.productID }}&user={{ item.parentID }}" alt=""/>
-        </a>
+    <!--Gallery displaying favourites-->
+    <div id="gallery">
+      {% if has_favorite is divisibleby 2 %}
+      <div id="content" class="gallery clearfix">
+
+        {% for item in items %}
+        <div class="picture">
+          <a href="/viewProduct?ID={{ item.productID }}&user={{ item.parentID }}">
+            <img src="/img?ID={{ item.productID }}&user={{ item.parentID }}" alt=""/>
+          </a>
+        </div>
+        {% endfor %}
       </div>
-    {% endfor %}
     </div>
-  </div>
 
 
     {% else %} 
@@ -134,5 +135,25 @@
     </div>
     {% endif %}
   </div>
-</body>
-</html>
+
+  <script src="../scripts/jquery-1.9.1.min.js"></script>
+  <script src="../scripts/jquery.masonry.min.js"></script>
+
+  <script>
+    function mansory_init(p) {
+      var $container = $(p);
+
+      $container.masonry({
+        itemSelector: '.picture'
+      }).imagesLoaded(function() {
+       $container.masonry('reload');
+     });
+
+    }
+    $(document).ready(function() {
+      mansory_init("#content");
+    });
+
+    </script>
+  </body>
+  </html>

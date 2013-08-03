@@ -129,7 +129,7 @@
 <body>
   <!--navigation bar -->
   <div id="navigation">
-  
+
     <!--marketplace banner photo -->
     <div class="marketplacebanner2">
       <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
@@ -152,7 +152,7 @@
     <!--item photo-->
     <div id="pictureframe">
       <div id="solopicture">
-        <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+        <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" data-placement="top" data-toggle="tooltip" data-original-title="Click to view in detail">
       </div>
     </div>
 
@@ -162,21 +162,23 @@
       <div id="home-made-button">
         <span>
           {% if fav_status is even %}
-          <a href= "/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}" class="favlink op">
+          <a href= "/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}" class="favlink op"  data-placement="top" data-toggle="tooltip" data-original-title="Click to favor the item">
             <i class="icon-heart"></i>
           </a>
           {% else %}
-          <a href= "/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}" class="unfavlink op">
+          <a href= "/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}" class="unfavlink op" data-placement="top" data-toggle="tooltip" data-original-title="Click to unfavor the item">
             <i class="icon-stop"></i> 
           </a>
           {% endif %}
         </span> 
+
       </div>
 
       <!--item name-->
       <div id="item-name">
         <p>{{ item.name }}</p>
       </div>
+
       <div class="clear"></div>
       
 
@@ -194,34 +196,97 @@
           </p>
         </div>
       </div>
-    </div>
-  </div>
 
 
-     <script src="../scripts/jquery-1.9.1.min.js"></script>
-     <script type="text/javascript" scr="bootstrap.min.js"></script> 
-     <script>
-      $(document).ready(function() {
+      <div id="owner" style="display:none">
+        <a href="/sellProduct?ID={{ item.key().id() }}&user={{ item.parent().email }}"> 
+          <p>
+            {% if item.sold %}
+            <p style="text-align:center"> Resell it!
+              {% else %}
+              <p style="text-align:center"> I have sold it!
+                {% endif %}
+              </a>
 
-        $("a.op").click(function() {
-          $click = $(this);
+            </div>
+          </div>
+        </div>
 
-          $.ajax({
-            url: $(this).attr("href"),
-          }).done(function() {
+        <div class="modal hide fade" id="viewLarge">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h5 class="modal-title">View in detail</h5>
 
-            if ($click.hasClass("favlink")) {
-              $click.removeClass("favlink").addClass("unfavlink").attr("href","/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}");
-              $(".icon-heart").removeClass("icon-heart").addClass("icon-stop");
+          </div>
+
+
+          <div class="modal-body">
+            <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}">
+          </div>
+
+        </div>
+
+        <div class="modal hide fade" id="dialogue">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">?????? don't know what to put as header ???????</h4>
+          </div>
+
+
+          <div class="modal-body">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a type="button" href="/favorite" class="btn btn-primary">Check my favorites</a>
+          </div>
+        </div>
+
+
+
+        <script src="../scripts/jquery-1.9.1.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+
+        <script>
+          $(document).ready(function() {
+            $("img").click(function() {
+              $("#viewLarge").modal();
+            });
+
+            if ("{{- user_mail -}}"=="{{- item.parent().email -}}") {
+              $("#owner").show();
             }
-            else {
-              $click.removeClass("unfavlink").addClass("favlink").attr("href","/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}");
-              $(".icon-stop").removeClass("icon-stop").addClass("icon-heart");
-            }
-          });
-          return false;
-        })
-      })
-    </script>
-  </body>
+
+            $("a.op").tooltip();
+            $("img").tooltip();
+
+
+            $("a.op").click(function() {
+              $click = $(this);
+
+              $.ajax({
+                url: $(this).attr("href"),
+              }).done(function() {
+
+                if ($click.hasClass("favlink")) {
+                  $click.removeClass("favlink").addClass("unfavlink").attr("href","/unfavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}").attr("data-original-title","Click to unfavor the item");
+                  $(".icon-heart").removeClass("icon-heart").addClass("icon-stop");
+                  $(".modal-body").html("<h3> You have liked it ! </h3>");
+                  $("#dialogue").modal();
+
+                }
+                else {
+                  $click.removeClass("unfavlink").addClass("favlink").attr("href","/addFavorite?ID={{ item.key().id() }}&user={{ item.parent().email }}").attr("data-original-title","Click to favor the item");
+                  $(".icon-stop").removeClass("icon-stop").addClass("icon-heart");
+                  $(".modal-body").html("<h3> You have stopped to like it ! </h3>");
+                  $("#dialogue").modal();
+
+                }
+              });
+              return false;
+            })
+})
+</script>
+</body>
 </html>
