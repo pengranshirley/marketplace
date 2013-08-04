@@ -41,7 +41,8 @@ class Favorite(db.Model):
   productID = db.StringProperty()
   parentID = db.StringProperty()
   userID = db.StringProperty()
-
+  name = db.StringProperty()
+  description = db.StringProperty(multiline=True)
 
 # This part for the front page
 # Process: User login --> First time user diverts to register pages
@@ -243,12 +244,17 @@ class AddFavorite(webapp2.RequestHandler):
     user = users.get_current_user()
     if user:
       key = self.request.get("ID")  #id is each product's natural primary key
+      person = db.get(parent_key)
+      item = Items.get_by_id(int(key), parent = person)
       parent_email = self.request.get("user")
+
       current_user = user.email()
       favorite = Favorite()
       favorite.productID = key
       favorite.parentID = parent_email
       favorite.userID = current_user
+      favorite.name = item.name
+      favorite.description = item.description
       favorite.put()
       #self.redirect("/viewProduct?ID="+key+"&user="+parent_email)
 

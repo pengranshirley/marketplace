@@ -48,7 +48,7 @@
     }    
     #intermediate-bar{
       width: 700px;
-      margin: auto;
+      margin: 0px auto;
     }
     .gallery{
       width: 650px;
@@ -119,7 +119,7 @@
       <img src="/profileImg" class="img-profile"/>
       <!--Edit profile button-->
       <div id="home-made-edit-profile-button">
-        <p><a href="#" id="edit_profile_link" style="color: blue">Edit Profile <i class="icon-wrench"></i></a></p> 
+        <p><a href="#" id="edit_profile_link" >Edit Profile <i class="icon-wrench"></i></a></p> 
       </div>
 
       <!--Profile details field-->
@@ -128,15 +128,12 @@
           About yourself: {{ user.description }}
         </p>
       </div>
-
     </div>
 
     <!--Items for sale bar-->
-
-
-
     <div id="intermediate-bar">
 
+      <!-- division -->
       <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
       <h3>
         Items for sale
