@@ -98,10 +98,29 @@
 			 				<textarea class="input-block-level" name="user_description" rows="3"></textarea>
 			 			</div>
 			 		</div>
+			 		<!-- upload profile photo-->
+		 			<div class="control-group">
+		 				<label class="control-label" for="profile_img">Profile Picture</label>
+		 				<div class="controls">	
+
+		 					<div class="fileupload fileupload-new" data-provides="fileupload">
+		 						<div class="fileupload-new thumbnail" style="width: 260px; height: 150px;"><img src="http://www.placehold.it/260x150/EFEFEF/AAAAAA&text=no+image" />
+		 						</div>
+		 						<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 260px; max-height: 150px; line-height: 20px;">
+		 						</div>
+		 						<div>
+		 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="img"/></span>
+		 							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+		 						</div>
+		 					</div>
+		 				</div>
+		 			</div>			 		
+		 			<!-- buttons-->
 			 		<div class="form-actions">
 					  	<button type="submit" class="btn btn-success">Done!</button>
 					  	<a href="{{ logout }}" class="btn btn-danger">Cancel</a>
 					</div>
+
 			 	</form>	
 		 	</div>
 	 	</div>
