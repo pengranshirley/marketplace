@@ -1,128 +1,134 @@
  <!DOCTYPE HTML>
  <html>
- 	<head>
-	 	<title>Your Marketplace Account</title>
-	 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-	 	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-	 	<style type="text/css">
-	      body{
-	        padding-bottom: 40px;
-	        background-color: #FFFF99;
-	      }
-	      .container{
-	      	padding-top: 90px;
-	      }
-	      .marketplacebanner2 {
-	        width: 345px;
-	        margin-left: auto;
-	        margin-right: auto;
-	        padding-bottom: 5px;  
-	      }
-	      .information{
-	      	margin: 50px auto;
-	      	width: 450px;
-	      	background-color: white;
-	      	padding: 10px;
-	      	border: solid;
-	      	border-width: 0.5px;
-	      	border-color: #cccccc;
-	      }
-		  #navigation{
-		    position: fixed;
-		    width: 100%;
-		    color: #ffffff;
-		    height: 125px;
-		    text-align: center;
-		    padding-top: 5px;
+ <head>
+ 	<title>Your Marketplace Account</title>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+ 	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+ 	<link href="../scripts/bootstrap-fileupload.min.css" rel="stylesheet"> 	
 
-		    /* Adds shadow to the bottom of the bar */
-		    -webkit-box-shadow: 0px 0px 8px 0px #000000;
-		    -moz-box-shadow: 0px 0px 8px 0px #000000;
-		    box-shadow: 0px 0px 8px 0px #000000;
-		    /* Adds the transparent background */
-		    background-color: rgba(255, 255, 255, 0.68);
-		    color: rgba(255, 255, 255, 0.68);        
-		  }
-		  #navigation a {
-		    font-size: 14px;
-		    color: navy blue;
-		    text-decoration: none;
-		  }
-		  #navigation a:hover {
-		    color: grey;
-		  }    	      
-	    </style>
-	</head>
-	 <body>   
-	  <!--navigation bar -->
-	  <div id="navigation">
-	  
-	    <!--marketplace banner photo -->
-	    <div class="marketplacebanner2">
-	      <img src="../images/Marketplace_smaller_logo_bazaar.png"/>
-	    </div>
+ 	<style type="text/css">
+ 		body{
+ 			padding-bottom: 40px;
+ 			background-color: #FFFF99;
+ 		}
+ 		.container{
+ 			padding-top: 90px;
+ 		}
+ 		.marketplacebanner2 {
+ 			width: 345px;
+ 			margin-left: auto;
+ 			margin-right: auto;
+ 			padding-bottom: 5px;  
+ 		}
+ 		.information{
+ 			margin: 50px auto;
+ 			width: 450px;
+ 			background-color: white;
+ 			padding: 10px;
+ 			border: solid;
+ 			border-width: 0.5px;
+ 			border-color: #cccccc;
+ 		}
+ 		#navigation{
+ 			position: fixed;
+ 			width: 100%;
+ 			color: #ffffff;
+ 			height: 125px;
+ 			text-align: center;
+ 			padding-top: 5px;
 
-	    <!--buttons-->
-	    <a href="/bazaar"> Bazaar </a> |
-	    <a href="/profile"> Profile </a> |
-	    <a href="/favorite"> Favorites </a> |
-	    <a href="/new"> Sell </a> |
-	    <a href={{ logout }}> Log out </a>
+ 			/* Adds shadow to the bottom of the bar */
+ 			-webkit-box-shadow: 0px 0px 8px 0px #000000;
+ 			-moz-box-shadow: 0px 0px 8px 0px #000000;
+ 			box-shadow: 0px 0px 8px 0px #000000;
+ 			/* Adds the transparent background */
+ 			background-color: rgba(255, 255, 255, 0.68);
+ 			color: rgba(255, 255, 255, 0.68);        
+ 		}
+ 		#navigation a {
+ 			font-size: 14px;
+ 			color: navy blue;
+ 			text-decoration: none;
+ 		}
+ 		#navigation a:hover {
+ 			color: grey;
+ 		}    	      
+ 	</style>
+ </head>
+ <body>   
+ 	<!--navigation bar -->
+ 	<div id="navigation">
 
-	  </div>    	
-	 	<div class="container">
-	 	 	<div class="information">
-	 	 		<form class="form-horizontal" action="/register" method="post">  
-			 		<div class="control-group">
-			 			<label class="control-label" for="username">
-			 				Username:
-			 			</label>
-			 			<div class="controls">
-			 				<input class = "span3" type="text" required name="username" placeholder="How do we address you?">
-			 			</div>
-			 		</div>
-			 		<div class="control-group">
-			 			<label class="control-label" for="contact-number">
-			 				Contact Number:
-			 			</label>
-			 			<div class="controls">
-			 				<input class = "span3" type="text" required name="contact-number" placeholder="Your mobile number">
-			 			</div>
-			 		</div>
-			 		<div class="control-group">
-			 			<label class="control-label" for="user-description">
-			 				Describe yourself:
-			 			</label>
-			 			<div class="controls">
-			 				<textarea class="input-block-level" name="user_description" rows="3"></textarea>
-			 			</div>
-			 		</div>
-			 		<!-- upload profile photo-->
-		 			<div class="control-group">
-		 				<label class="control-label" for="profile_img">Profile Picture</label>
-		 				<div class="controls">	
+ 		<!--marketplace banner photo -->
+ 		<div class="marketplacebanner2">
+ 			<img src="../images/Marketplace_smaller_logo_bazaar.png"/>
+ 		</div>
 
-		 					<div class="fileupload fileupload-new" data-provides="fileupload">
-		 						<div class="fileupload-new thumbnail" style="width: 260px; height: 150px;"><img src="http://www.placehold.it/260x150/EFEFEF/AAAAAA&text=no+image" />
-		 						</div>
-		 						<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 260px; max-height: 150px; line-height: 20px;">
-		 						</div>
-		 						<div>
-		 							<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="img"/></span>
-		 							<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-		 						</div>
-		 					</div>
-		 				</div>
-		 			</div>			 		
-		 			<!-- buttons-->
-			 		<div class="form-actions">
-					  	<button type="submit" class="btn btn-success">Done!</button>
-					  	<a href="{{ logout }}" class="btn btn-danger">Cancel</a>
-					</div>
+ 		<!--buttons-->
+ 		<a href="/bazaar"> Bazaar </a> |
+ 		<a href="/profile"> Profile </a> |
+ 		<a href="/favorite"> Favorites </a> |
+ 		<a href="/new"> Sell </a> |
+ 		<a href={{ logout }}> Log out </a>
 
-			 	</form>	
-		 	</div>
-	 	</div>
-	</body>
-</html>
+ 	</div>    	
+ 	<div class="container">
+ 		<div class="information">
+ 			<form class="form-horizontal" action="/register" method="post" enctype="multipart/form-data">  
+ 				<div class="control-group">
+ 					<label class="control-label" for="username">
+ 						Username:
+ 					</label>
+ 					<div class="controls">
+ 						<input class = "span3" type="text" required name="username" placeholder="How do we address you?">
+ 					</div>
+ 				</div>
+ 				<div class="control-group">
+ 					<label class="control-label" for="contact-number">
+ 						Contact Number:
+ 					</label>
+ 					<div class="controls">
+ 						<input class = "span3" type="text" required name="contact-number" placeholder="Your mobile number">
+ 					</div>
+ 				</div>
+ 				<div class="control-group">
+ 					<label class="control-label" for="user-description">
+ 						Describe yourself:
+ 					</label>
+ 					<div class="controls">
+ 						<textarea class="input-block-level" name="user_description" rows="3"></textarea>
+ 					</div>
+ 				</div>
+ 				<!-- upload profile photo-->
+ 				<div class="control-group">
+ 					<label class="control-label" for="profile_img">Profile Picture</label>
+ 					<div class="controls">	
+
+ 						<div class="fileupload fileupload-new" data-provides="fileupload">
+ 							<div class="fileupload-new thumbnail" style="width: 260px; height: 150px;"><img src="http://www.placehold.it/260x150/EFEFEF/AAAAAA&text=no+image" />
+ 							</div>
+ 							<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 260px; max-height: 150px; line-height: 20px;">
+ 							</div>
+ 							<div>
+ 								<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="profile_img"/></span>
+ 								<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+ 							</div>
+ 						</div>
+ 					</div>
+ 				</div>			 		
+ 				<!-- buttons-->
+ 				<div class="form-actions">
+ 					<button type="submit" class="btn btn-success">Done!</button>
+ 					<a href="{{ logout }}" class="btn btn-danger">Cancel</a>
+ 				</div>
+
+ 			</form>	
+ 		</div>
+ 	</div>
+
+ 	<script src="../scripts/jquery-1.9.1.min.js"></script>
+ 	<script src="../scripts/bootstrap-fileupload.min.js"></script>
+
+ </body>
+ </html>

@@ -22,6 +22,7 @@ class Persons(db.Model):
   contact = db.StringProperty()
   registerDate = db.DateTimeProperty(auto_now_add=True)
   description = db.StringProperty(multiline=True)
+  profile_img = db.BlobProperty()
   
 class Items(db.Model):
   """Models an item with item_link, image_link, description, and date."""
@@ -93,14 +94,24 @@ class AddUser(webapp2.RequestHandler):
   def post(self):
     user = users.get_current_user()
     if user:
-         email = users.get_current_user().email()
-         newPerson = Persons(key_name=email)
-         newPerson.email = email
-         newPerson.description = self.request.get('user_description')
-         newPerson.username = self.request.get('username')
-         newPerson.contact = self.request.get('contact-number')
+      email = users.get_current_user().email()
+      parent_key = db.Key.from_path('Persons', email)
+      person = db.get(parent_key)
+      newPerson = Persons(key_name=email)
+      newPerson.email = email
+      newPerson.description = self.request.get('user_description')
+      newPerson.username = self.request.get('username')
+      newPerson.contact = self.request.get('contact-number')
+      img = self.request.get('profile_img')
+
+      if person:
+         newPerson.profile_img = person.profile_img
          newPerson.put()
-         #afterwards, redirect to the main page (9 categories)
+         self.redirect("/profile")
+      else:
+         if img:
+           newPerson.profile_img = db.Blob(images.resize(img, 720, 720))
+         newPerson.put()                 
          template_values = {
             'user_mail': users.get_current_user().email(),
             'logout': users.create_logout_url(self.request.host_url),
@@ -108,6 +119,7 @@ class AddUser(webapp2.RequestHandler):
          } 
          template = jinja_environment.get_template('bazaar.html')
          self.response.out.write(template.render(template_values))
+         
     else:
         self.redirect(self.request.host_url)
 
@@ -282,6 +294,18 @@ class ViewImage(webapp2.RequestHandler):
       else:
         self.redirect("http://www.placehold.it/360x240/EFEFEF/AAAAAA&text=no+image")
 
+class ViewProfileImage(webapp2.RequestHandler):
+  def get(self):
+    if users:
+      parent_key = db.Key.from_path('Persons', users.get_current_user().email())
+      person = db.get(parent_key)
+      profile_img = person.profile_img
+      if profile_img:
+        self.response.headers['Content-Type'] = 'image/jpeg'
+        self.response.out.write(profile_img)
+      else:
+        self.redirect("http://www.placehold.it/360x240/EFEFEF/AAAAAA&text=no+image")
+
 
 class DisplayByC(webapp2.RequestHandler):
   def get(self, name):
@@ -365,6 +389,7 @@ app = webapp2.WSGIApplication([('/bazaar', MainPage),
                                ('/favorite', ViewFavorite),
                                (r'/viewCategory(.*)', DisplayByC),
                                (r'/img(.*)', ViewImage),
+                               ('/profileImg', ViewProfileImage),
                                (r'/addFavorite(.*)', AddFavorite),
                                (r'/unfavorite(.*)', RemoveFavorite),
                                (r'/sellProduct(.*)', SoldCondition),
