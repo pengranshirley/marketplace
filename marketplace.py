@@ -298,7 +298,7 @@ class ViewImage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'image/jpeg'
         self.response.out.write(img)
       else:
-        self.redirect("http://www.placehold.it/360x240/EFEFEF/AAAAAA&text=no+image")
+        self.redirect("/Images/Default_Images/default"+item.category+".jpg")
 
 class ViewProfileImage(webapp2.RequestHandler):
   def get(self):
