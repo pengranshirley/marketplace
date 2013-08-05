@@ -243,12 +243,12 @@ class AddFavorite(webapp2.RequestHandler):
   def get(self, name):
     user = users.get_current_user()
     if user:
-      key = self.request.get("ID")  #id is each product's natural primary key
-      person = db.get(parent_key)
-      item = Items.get_by_id(int(key), parent = person)
+      key = self.request.get("ID")  
       parent_email = self.request.get("user")
-
+      person = db.Key.from_path('Persons', parent_email)
+      item = Items.get_by_id(int(key), parent = person)
       current_user = user.email()
+      
       favorite = Favorite()
       favorite.productID = key
       favorite.parentID = parent_email
