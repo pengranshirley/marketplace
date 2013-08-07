@@ -9,6 +9,8 @@
   <style type="text/css">
     body{
       padding-bottom: 40px;
+      padding-left: 0px;
+      margin: 0px;
       background-color: #FFFF99;
     }
     .marketplacebanner2 {
@@ -33,7 +35,8 @@
       padding-top: 5px;
     }
     .hero-unit{
-      background-color: #FFFFCC;      
+      background-color: #FFFFCC; 
+      width: 95%;     
     }
     .hero-unit h3{
       margin-top: -10px;      
@@ -73,8 +76,39 @@
     }
     #navigation a:hover {
       color: grey;
-    } 
+    }
+    @media (max-device-width: 480px) {
+      .marketplacebanner2 {
+        width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 5px;  
+      }
+      #navigation{
+        position: fixed;
+        width: 100%;
+        color: #ffffff;
+        height: 100px;
+        text-align: center;
+        padding-top: 5px;
+        z-index:1;
+
+        /* Adds shadow to the bottom of the bar */
+        -webkit-box-shadow: 0px 0px 8px 0px #000000;
+        -moz-box-shadow: 0px 0px 8px 0px #000000;
+        box-shadow: 0px 0px 8px 0px #000000;
+        /* Adds the transparent background */
+        background-color: rgba(255, 255, 255, 0.68);
+        color: rgba(255, 255, 255, 0.68);        
+      }
+      #gallery{
+        padding-top: 100px;
+        width: 1100px;
+        margin: 20px auto;
+      }
+    }    
   </style>
+  <meta name="viewport" content="initial-scale=1.0">
 </head>
 <body>
   <!--navigation bar -->

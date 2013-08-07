@@ -76,8 +76,40 @@
       #navigation a:hover {
         color: grey;
       } 
+      @media (max-device-width: 480px) {
+        .marketplacebanner2 {
+          width: 280px;
+          margin-left: auto;
+          margin-right: auto;
+          padding-bottom: 5px;  
+        }
+        #navigation{
+          position: fixed;
+          width: 100%;
+          color: #ffffff;
+          height: 100px;
+          text-align: center;
+          padding-top: 5px;
+          z-index:1;
 
-    </style>  
+          /* Adds shadow to the bottom of the bar */
+          -webkit-box-shadow: 0px 0px 8px 0px #000000;
+          -moz-box-shadow: 0px 0px 8px 0px #000000;
+          box-shadow: 0px 0px 8px 0px #000000;
+          /* Adds the transparent background */
+          background-color: rgba(255, 255, 255, 0.68);
+          color: rgba(255, 255, 255, 0.68);        
+        }
+        .gallery{
+          padding-top: 100px;
+          width: 1110px;
+          margin-top: 10px;
+          margin-left: auto;
+          margin-right: auto;
+        }    
+      }
+    </style>
+  <meta name="viewport" content="initial-scale=1.0"> 
   </head>
   <body>
     <!--navigation bar -->

@@ -11,7 +11,9 @@
       
       body{
         padding-top: 150px;
+        padding-left: 0px;
         padding-bottom: 40px;
+        margin: 0px;
         background-color: #FFFF99;
       }
       .marketplacebanner {
@@ -24,12 +26,35 @@
         width: 210px;
         font-size: 14px;
         padding: 2px 2px 2px;
-        margin: 50px auto;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
         border: 1px solid #e5e5e5;
         text-align: center;
         background-color: #FFFFCC;
       }
+
+      @media (max-device-width: 480px) {
+        .marketplacebanner {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        } 
+        .signin{
+        font-family: Helvetica;
+        width: 200px;
+        font-size: 12px;
+        padding: 2px 2px 2px;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #e5e5e5;
+        text-align: center;
+        background-color: #FFFFCC;
+        }
+      }
     </style>
+  <meta name="viewport" content="initial-scale=1.0">
   </head>
   <body>
     <div class="container">

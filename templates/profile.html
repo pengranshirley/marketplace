@@ -11,6 +11,8 @@
   <style type="text/css">
     body{
       padding-bottom: 40px;
+      padding-left: 0px;
+      margin: 0px;
       background-color: #FFFF99;
     }
     .marketplacebanner2 {
@@ -20,27 +22,31 @@
       padding-bottom: 5px;  
     }
     .profile-description{
-      width: 390px;
+      width: 50%;
+      float: left;
+      margin-left: 10px;
     }
     p.profile-description{
       width: auto;
     }
     .img-profile {
-      float: right;
-      width: 140px;
+      float: left;
+      width: 25%;
       padding: 4px;
       background-color: #fff;
       border: 1px solid #ccc;
       border: 1px solid rgba(0, 0, 0, 0.2);
     }    
     #profile-bar{
-      width: 650px;
+      width: 500px;
       margin-left: auto;
       margin-right: auto;
-      padding: 140px;
+      padding-top: 140px;
+      overflow: hidden;
     }
     #home-made-edit-profile-button{
-      width: 100px;
+      margin-left: 10px;
+      width: auto;
       height: 20px;
     }    
     #home-made-edit-profile-button a{
@@ -92,8 +98,66 @@
     }
     #navigation a:hover {
       color: grey;
-    }   
+    }
+    #division{
+      width: 700px; 
+      height: 1px; 
+      background-color: grey; 
+      float: left; 
+      margin-left: auto; 
+      margin-right: auto;
+    }
+    @media (max-device-width: 480px) {
+      .marketplacebanner2 {
+        width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 5px;  
+      }
+      #navigation{
+        position: fixed;
+        width: 100%;
+        color: #ffffff;
+        height: 100px;
+        text-align: center;
+        padding-top: 5px;
+        z-index:1;
+
+        /* Adds shadow to the bottom of the bar */
+        -webkit-box-shadow: 0px 0px 8px 0px #000000;
+        -moz-box-shadow: 0px 0px 8px 0px #000000;
+        box-shadow: 0px 0px 8px 0px #000000;
+        /* Adds the transparent background */
+        background-color: rgba(255, 255, 255, 0.68);
+        color: rgba(255, 255, 255, 0.68);        
+      }
+      #profile-bar{
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 115px;
+        overflow: hidden;
+      }
+      #intermediate-bar{
+        width: 450px;
+        margin: 0px auto;
+      }
+      #division{
+        width: 450px; 
+        height: 1px; 
+        background-color: grey; 
+        margin-left: auto; 
+        margin-right: auto;
+      }
+      .gallery{
+        width: 450px;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
   </style>          
+  <meta name="viewport" content="initial-scale=1.0">
 </head>
 <body>
   <!--navigation bar -->
@@ -117,37 +181,44 @@
     <div id="profile-bar">
     	<!--Profile picture-->
       <img src="/profileImg" class="img-profile"/>
-      <!--Edit profile button-->
-      <div id="home-made-edit-profile-button">
-        <p><a href="#" id="edit_profile_link" >Edit Profile <i class="icon-wrench"></i></a></p> 
-      </div>
+
 
       <!--Profile details field-->
       <div class="profile-description">
-        <p><strong>{{ user.username }}</strong><br>
-          About yourself: {{ user.description }}
+        
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: black"><strong>{{ user.username }}</strong></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <!--Edit profile button-->
+            <div id="home-made-edit-profile-button">
+              <p><a href="#" id="edit_profile_link" >Edit Profile <i class="icon-wrench"></i></a></p> 
+            </div>
+          </ul>
+        </div>
+        <p>
+          {{ user.description }}
         </p>
       </div>
     </div>
 
     <!--Items for sale bar-->
     <div id="intermediate-bar">
-
       <!-- division -->
-      <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
+      <div id="division"></div>
       <h3>
         Items for sale
       </h3>
 
       {% if has_onsale is divisibleby 2 %}
-      <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
+      <!-- division-->
+      <div id="division"></div>
       <div style="margin-bottom:50px " class="well">
         <h4>You have not placed anything on sale yet.</h4>
       </div>
       {% else %}
 
       <!-- division -->
-      <div style="width: 700px; height: 1px; background-color: grey; float: left"></div>
+      <div id="division"></div>
 
       <!--gallery-->    
       <div id="content" class="gallery clearfix">
@@ -157,13 +228,13 @@
             <img src="/img?ID={{ item.key().id() }}&user={{ item.parent().email }}" alt=""/>
           </a>
 
-          </div>
-          {% endfor %}
         </div>
-        <!-- division -->
-        <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
+        {% endfor %}
       </div>
-      {% endif %}
+      <!-- division -->
+      <div id="division"></div>
+    </div>
+    {% endif %}
 
       <!--Items sold bar-->
 
@@ -174,7 +245,7 @@
           Items sold
         </h3>
         <!-- division -->
-        <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
+        <div id="division"></div>
 
         {% if has_sold is divisibleby 2 %}
         <div class="well">
@@ -197,7 +268,7 @@
           <br>
 
           <!-- division -->
-          <div style="width: 700px; height:1px; background-color: grey; float: left"></div>
+          <div id="division"></div>
         </div>
         {% endif %}
       </div>
